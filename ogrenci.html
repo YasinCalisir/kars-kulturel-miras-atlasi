@@ -144,9 +144,10 @@ function saveStudent() {
     localStorage.setItem("karsStudent", JSON.stringify(student));
 
     message.style.color = "green";
-    message.innerText = "Kayıt başarılı! Geziye hoş geldin.";
+    message.innerHTML = "Kayıt başarılı! Geziye hoş geldin.<br><br>" +
+    "🏆 Toplam Puanın: " + getKarsScore();
 }
 </script>
-
+<script src="puan.js"></script>
 </body>
 </html>
