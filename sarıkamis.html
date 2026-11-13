@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sarıkamış - Şehrimizi Tanıyalım</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#eef4f8;color:#243447}
+header{background:linear-gradient(135deg,#17476b,#5b91b5);color:white;text-align:center;padding:35px 15px}
+header h1{font-size:32px;margin:0 0 10px}
+.container{max-width:950px;margin:25px auto;padding:20px}
+.card{background:white;padding:22px;margin:18px 0;border-radius:14px;box-shadow:0 3px 12px #0001}
+h2{color:#17476b}
+button{background:#17618c;color:white;border:0;padding:12px 18px;border-radius:8px;cursor:pointer;margin:5px}
+button:hover{background:#0d3c5c}
+.quiz button{display:block;width:100%;text-align:left;margin:8px 0}
+.result{font-weight:bold;margin-top:12px}
+a{color:#17618c}
+footer{text-align:center;padding:25px;color:#526575}
+</style>
+</head>
+<body>
+
+<header>
+<h1>❄️ Sarıkamış</h1>
+<p>Şehrimizi Tanıyalım – Dijital Kars Gezisi</p>
+</header>
+
+<div class="container">
+
+<div class="card">
+<h2>Sarıkamış'ı Tanıyalım</h2>
+<p>Sarıkamış, Kars'ın doğal güzellikleri ve kış turizmiyle tanınan ilçelerinden biridir. Özellikle kış aylarında karla kaplanan ormanları ve kayak merkeziyle dikkat çeker.</p>
+</div>
+
+<div class="card">
+<h2>🌲 Sarıçam Ormanları</h2>
+<p>Sarıkamış çevresinde geniş sarıçam ormanları bulunur. Bu ormanlar bölgenin doğal güzelliğine katkı sağlar ve birçok canlıya yaşam alanı sunar.</p>
+</div>
+
+<div class="card">
+<h2>🎿 Sarıkamış Kayak Merkezi</h2>
+<p>Sarıkamış Kayak Merkezi, kış sporları için önemli merkezlerden biridir. Bölgenin kar kalitesi ve orman manzarası ziyaretçilerin ilgisini çeker.</p>
+</div>
+
+<div class="card">
+<h2>🕊️ Sarıkamış Harekâtı</h2>
+<p>Sarıkamış, 1914-1915 yıllarında yaşanan Sarıkamış Harekâtı ile tarihimizde önemli bir yere sahiptir. Zorlu kış şartlarında hayatını kaybeden askerlerimizi saygı ve rahmetle anıyoruz.</p>
+</div>
+
+<div class="card">
+<h2>🎧 Sesli Anlatım</h2>
+<p>Sayfadaki bilgileri dinlemek için aşağıdaki düğmeye basabilirsin.</p>
+<button onclick="speak()">🔊 Sarıkamış'ı Dinle</button>
+<button onclick="speechSynthesis.cancel()">Durdur</button>
+</div>
+
+<div class="card quiz">
+<h2>🧠 Öğrendiklerimizi Test Edelim</h2>
+<p><b>1. Sarıkamış hangi doğal ormanlarıyla tanınır?</b></p>
+<button onclick="check(1,1)">A) Meşe ormanları</button>
+<button onclick="check(1,2)">B) Sarıçam ormanları</button>
+<button onclick="check(1,3)">C) Palmiye ormanları</button>
+<p id="r1" class="result"></p>
+
+<p><b>2. Sarıkamış hangi sporla özellikle tanınır?</b></p>
+<button onclick="check(2,1)">A) Kayak</button>
+<button onclick="check(2,2)">B) Sörf</button>
+<button onclick="check(2,3)">C) Dalış</button>
+<p id="r2" class="result"></p>
+</div>
+
+<div class="card">
+<h2>📍 Haritada Sarıkamış</h2>
+<p>Sarıkamış'ın konumunu haritada inceleyebilirsin.</p>
+<a href="https://www.google.com/maps/search/?api=1&query=Sarıkam%C4%B1%C5%9F+Kars" target="_blank">Sarıkamış'ı Haritada Aç →</a>
+</div>
+
+<div class="card">
+<a href="index.html">← Ana Sayfaya Dön</a>
+</div>
+
+</div>
+
+<footer>Şehrimizi Tanıyalım – Kars'ı görmeden Kars'ı keşfet!</footer>
+
+<script>
+function speak(){
+let text="Sarıkamış, Kars'ın doğal güzellikleriyle tanınan ilçelerinden biridir. Sarıçam ormanları ve kayak merkeziyle dikkat çeker. Ayrıca Sarıkamış Harekâtı ile tarihimizde önemli bir yere sahiptir. Bu topraklarda hayatını kaybeden askerlerimizi saygı ve rahmetle anıyoruz.";
+let msg=new SpeechSynthesisUtterance(text);
+msg.lang="tr-TR";
+speechSynthesis.cancel();
+speechSynthesis.speak(msg);
+}
+
+function check(q,a){
+let correct=q===1?2:1;
+let result=document.getElementById("r"+q);
+if(a===correct){
+result.innerHTML="✅ Doğru cevap! Harika.";
+result.style.color="green";
+}else{
+result.innerHTML="❌ Tekrar dene. Bir kez daha düşün!";
+result.style.color="red";
+}
+}
+</script>
+
+</body>
+</html>
