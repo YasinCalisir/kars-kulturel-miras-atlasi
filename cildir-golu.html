@@ -171,9 +171,34 @@ korumak hepimizin sorumluluğudur.')">🔊 Sesli Dinle</button>
 <p>Kars'ın doğal güzelliklerini birlikte keşfediyoruz.</p>
 </footer>
 
+ <script src="puan.js"></script>
 <script>
-let score=0;
-let answered={1:false,2:false};
+let score = 0;
+let answered = {1:false, 2:false};
+
+function answer(question, correct) {
+    if (answered[question]) return;
+
+    answered[question] = true;
+
+    const result = document.getElementById('result');
+
+    if (correct) {
+        score += 10;
+
+        awardKarsPoint("cildir", question);
+
+        result.innerHTML = '✅ Doğru cevap! 10 puan kazandın!';
+        result.style.color = 'green';
+    } else {
+        result.innerHTML = '❌ Yanlış cevap!';
+        result.style.color = '#b36a16';
+    }
+
+    if (Object.keys(answered).every(k => answered[k])) {
+        result.innerHTML += '<br>🎉 Yarışma tamamlandı! Puanın: ' + score + '/20';
+    }
+}
 
 function speak(text){
  if(!('speechSynthesis' in window)){
