@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tarihî Kars | Şehrimizi Tanıyalım</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f3f6fa;color:#263445;line-height:1.7}
+header{background:#123b55;color:white;padding:18px 6%;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+header a{color:white;text-decoration:none}
+.hero{background:linear-gradient(130deg,#123b55,#397d85);color:white;text-align:center;padding:65px 20px}
+.hero h1{font-size:clamp(32px,5vw,48px)}
+.hero p{max-width:700px;margin:12px auto}
+.container{max-width:1050px;margin:auto;padding:40px 20px}
+h2{color:#164c65;margin-bottom:12px}
+.intro{background:white;padding:25px;border-radius:14px;margin-bottom:30px}
+.stops{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.card{background:white;border-radius:14px;padding:23px;box-shadow:0 4px 14px #0000000c}
+.picture{height:125px;border-radius:10px;background:linear-gradient(135deg,#dce8e8,#a9c6c5);display:flex;align-items:center;justify-content:center;font-size:65px;margin-bottom:15px}
+.card h3{color:#164c65;margin-bottom:8px}
+.card p{font-size:14px}
+button,.btn{border:0;background:#e8a932;color:#263445;padding:11px 17px;border-radius:8px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block;margin-top:13px}
+.card a{color:#147c8b;font-weight:bold}
+.quiz{background:white;border-radius:14px;padding:25px;margin-top:35px}
+.quiz button{display:block;width:100%;text-align:left;background:#edf3f5;margin-top:10px}
+#result{margin-top:15px;font-weight:bold}
+footer{background:#123b55;color:white;text-align:center;padding:25px}
+</style>
+</head>
+<body>
+
+<header>
+<strong>🏛️ ŞEHRİMİZİ TANIYALIM</strong>
+<a href="index.html">← Ana Sayfaya Dön</a>
+</header>
+
+<section class="hero">
+<h1>🏰 TARİHÎ KARS</h1>
+<p>Binlerce yıllık geçmişiyle Kars'ı keşfetmeye hazır mısın?</p>
+<p>Birlikte tarihî bir yolculuğa çıkıyoruz!</p>
+</section>
+
+<main class="container">
+
+<section class="intro">
+<h2>Sevgili Öğrenciler!</h2>
+<p>
+Kars, geçmişten günümüze birçok medeniyete ev sahipliği
+yapmış önemli bir serhat şehridir. Kaleleri, camileri,
+köprüleri ve tarihî yapılarıyla büyük bir kültürel
+zenginliğe sahiptir.
+</p>
+<p>
+Bu dijital gezide Kars'ın tarihî güzelliklerini
+yaşadığın yerden keşfedebilirsin.
+</p>
+</section>
+
+<h2>📍 Tarihî Gezi Duraklarımız</h2>
+
+<section class="stops">
+
+<article class="card">
+<div class="picture">🏰</div>
+<h3>1. Kars Kalesi</h3>
+<p>
+Kars'ın simgelerinden biridir. Kaynaklarda kalenin
+1152 yılında Sultan Melik İzzettin'in emriyle
+yaptırıldığı belirtilir. 1386 yılında Timur tarafından
+yıkılmış, 1579 yılında yeniden yaptırılmıştır.
+</p>
+<button onclick="speak('Kars Kalesi, şehrimizin önemli tarihî
+eserlerinden biridir. 1152 yılında yaptırıldığı
+belirtilmektedir. 1579 yılında yeniden inşa edilmiştir.')">
+🔊 Sesli Dinle
+</button>
+</article>
+
+<article class="card">
+<div class="picture">🕌</div>
+<h3>2. Evliya Camii</h3>
+<p>
+1579 yılında Lala Mustafa Paşa tarafından
+yaptırılan cami, Ebul Hasan Harakani'nin
+türbesinin bulunduğu külliye içerisinde yer alır.
+</p>
+<button onclick="speak('Evliya Camii, 1579 yılında Lala Mustafa Paşa
+tarafından yaptırılmıştır. Ebul Hasan Harakani
+Türbesi bu külliyenin içerisindedir.')">
+🔊 Sesli Dinle
+</button>
+</article>
+
+<article class="card">
+<div class="picture">🌉</div>
+<h3>3. Taş Köprü</h3>
+<p>
+Kars Çayı üzerinde bulunan tarihî köprü,
+1579 yılında III. Murat'ın emriyle yaptırılmıştır.
+Daha sonra 1725 yılında yeniden inşa edilmiştir.
+</p>
+<button onclick="speak('Taş Köprü, Kars Çayı üzerinde yer alır.
+1579 yılında yaptırılmış ve 1725 yılında
+yeniden inşa edilmiştir.')">
+🔊 Sesli Dinle
+</button>
+</article>
+
+<article class="card">
+<div class="picture">🕌</div>
+<h3>4. Ebul Hasan Harakani Türbesi</h3>
+<p>
+963-1033 yılları arasında yaşadığı belirtilen
+Ebul Hasan Harakani, Kars'ın önemli manevi
+şahsiyetlerindendir. Türbesi Evliya Camii
+külliyesinde bulunmaktadır.
+</p>
+<button onclick="speak('Ebul Hasan Harakani, 963 ile 1033 yılları
+arasında yaşamıştır. Türbesi Kars merkezde
+Evliya Camii külliyesi içerisindedir.')">
+🔊 Sesli Dinle
+</button>
+</article>
+
+<article class="card">
+<div class="picture">🏡</div>
+<h3>5. Namık Kemal Kültür Evi</h3>
+<p>
+Vatan şairi Namık Kemal'in 1853-1854 yıllarında
+çocukluğunu geçirdiği evdir. Günümüzde
+sergi alanı ve Âşıklar Evi olarak hizmet verir.
+</p>
+<button onclick="speak('Namık Kemal Kültür Evi, vatan şairi
+Namık Kemal’in çocukluğunu geçirdiği tarihî
+evdir. Günümüzde kültür evi olarak hizmet verir.')">
+🔊 Sesli Dinle
+</button>
+</article>
+
+<article class="card">
+<div class="picture">🏛️</div>
+<h3>6. Kümbet Camii</h3>
+<p>
+On İki Havariler Kilisesi olarak da bilinen
+tarihî yapı, 10. yüzyılda Bagratlılar döneminde
+inşa edilmiştir. Günümüzde cami olarak kullanılır.
+</p>
+<button onclick="speak('Kümbet Camii, geçmişte On İki Havariler
+Kilisesi olarak bilinirdi. Onuncu yüzyılda
+inşa edilmiştir.')">
+🔊 Sesli Dinle
+</button>
+</article>
+
+</section>
+
+<section class="intro" style="margin-top:35px">
+<h2>🗺️ Haritada Tarihî Kars'ı Gez</h2>
+<p>Bu tarihî noktaları mevcut dijital Kars haritamızda incele.</p>
+<a class="btn" href="kars_atlas_haritasi.html">Haritayı Aç →</a>
+</section>
+
+<section class="quiz">
+<h2>🧠 Öğrendiklerimizi Test Edelim</h2>
+<p><strong>Taş Köprü hangi akarsu üzerinde bulunmaktadır?</strong></p>
+<button onclick="answer(false)">A) Aras Nehri</button>
+<button onclick="answer(true)">B) Kars Çayı</button>
+<button onclick="answer(false)">C) Arpaçay</button>
+<div id="result"></div>
+</section>
+
+</main>
+
+<footer>
+<h3>Şehrimizi Tanıyalım</h3>
+<p>Kars'ı birlikte keşfediyoruz!</p>
+<p>Geleceğe kültürel mirasımızı taşıyoruz.</p>
+</footer>
+
+<script>
+function speak(text){
+ if(!('speechSynthesis' in window)){
+ alert('Tarayıcınız sesli anlatımı desteklemiyor.');
+ return;
+ }
+ speechSynthesis.cancel();
+ const msg=new SpeechSynthesisUtterance(text);
+ msg.lang='tr-TR';
+ msg.rate=0.9;
+ speechSynthesis.speak(msg);
+}
+
+function answer(correct){
+ const result=document.getElementById('result');
+ if(correct){
+ result.innerHTML='🎉 Tebrikler! Doğru cevap.';
+ result.style.color='green';
+ }else{
+ result.innerHTML='Tekrar dene! Biraz daha düşün.';
+ result.style.color='red';
+ }
+}
+</script>
+
+</body>
+</html>
