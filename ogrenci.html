@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Öğrenci Girişi - Dijital Kars Gezisi</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eef4f8;
+    color: #263747;
+}
+header {
+    background: linear-gradient(135deg, #17476b, #5794b8);
+    color: white;
+    text-align: center;
+    padding: 35px 15px;
+}
+.container {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+}
+.card {
+    background: white;
+    padding: 28px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px #0001;
+}
+label {
+    display: block;
+    margin-top: 18px;
+    font-weight: bold;
+}
+input, select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px;
+    margin-top: 8px;
+    border: 1px solid #ccd6df;
+    border-radius: 8px;
+    font-size: 16px;
+}
+button {
+    width: 100%;
+    margin-top: 25px;
+    padding: 14px;
+    background: #17618c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+button:hover {
+    background: #104568;
+}
+#message {
+    margin-top: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+footer {
+    text-align: center;
+    padding: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🎓 Öğrenci Girişi</h1>
+    <p>Şehrimizi Tanıyalım – Dijital Kars Gezisi</p>
+</header>
+
+<div class="container">
+    <div class="card">
+        <h2>Geziye Hoş Geldin!</h2>
+        <p>Geziye başlamadan önce bilgilerini gir.</p>
+
+        <label for="studentName">Ad Soyad</label>
+        <input type="text" id="studentName"
+               placeholder="Adını ve soyadını yaz">
+
+        <label for="studentClass">Sınıfın</label>
+        <select id="studentClass">
+            <option value="">Sınıfını seç</option>
+            <option>5. Sınıf</option>
+            <option>6. Sınıf</option>
+            <option>7. Sınıf</option>
+            <option>8. Sınıf</option>
+        </select>
+
+        <label for="schoolName">Okulun</label>
+        <input type="text" id="schoolName"
+               placeholder="Okulunun adını yaz">
+
+        <button onclick="saveStudent()">Geziye Başla</button>
+
+        <p id="message"></p>
+    </div>
+</div>
+
+<footer>
+    Kars'ı görmeden Kars'ı keşfet!
+</footer>
+
+<script>
+function saveStudent() {
+    let name = document.getElementById("studentName").value.trim();
+    let studentClass = document.getElementById("studentClass").value;
+    let school = document.getElementById("schoolName").value.trim();
+
+    let message = document.getElementById("message");
+
+    if (!name || !studentClass || !school) {
+        message.style.color = "red";
+        message.innerText = "Lütfen bütün alanları doldur.";
+        return;
+    }
+
+    let student = {
+        name: name,
+        studentClass: studentClass,
+        school: school,
+        score: 0
+    };
+
+    localStorage.setItem("karsStudent", JSON.stringify(student));
+
+    message.style.color = "green";
+    message.innerText = "Kayıt başarılı! Geziye hoş geldin.";
+}
+</script>
+
+</body>
+</html>
