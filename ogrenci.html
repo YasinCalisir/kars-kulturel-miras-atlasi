@@ -134,11 +134,27 @@ function saveStudent() {
         return;
     }
 
-    let student = {
-        name: name,
-        studentClass: studentClass,
-        school: school,
-        score: 0
+   let oldStudent = JSON.parse(
+    localStorage.getItem("karsStudent") || "null"
+);
+
+let oldScore = 0;
+
+if (
+    oldStudent &&
+    oldStudent.name === name &&
+    oldStudent.school === school &&
+    oldStudent.studentClass === studentClass
+) {
+    oldScore = Number(oldStudent.score) || 0;
+}
+
+let student = {
+    name: name,
+    studentClass: studentClass,
+    school: school,
+    score: oldScore
+};
     };
 
    let students = JSON.parse(
@@ -152,7 +168,10 @@ let existingIndex = students.findIndex(s =>
 );
 
 if (existingIndex >= 0) {
-    student.score = Number(students[existingIndex].score) || 0;
+  student.score = Math.max(
+    Number(student.score) || 0,
+    Number(students[existingIndex].score) || 0
+);
     students[existingIndex] = student;
 } else {
     students.push(student);
