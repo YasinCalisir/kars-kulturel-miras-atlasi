@@ -141,7 +141,26 @@ function saveStudent() {
         score: 0
     };
 
-    localStorage.setItem("karsStudent", JSON.stringify(student));
+   let students = JSON.parse(
+    localStorage.getItem("karsStudents") || "[]"
+);
+
+let existingIndex = students.findIndex(s =>
+    s.name === student.name &&
+    s.school === student.school &&
+    s.studentClass === student.studentClass
+);
+
+if (existingIndex >= 0) {
+    student.score = Number(students[existingIndex].score) || 0;
+    students[existingIndex] = student;
+} else {
+    students.push(student);
+}
+
+localStorage.setItem("karsStudents", JSON.stringify(students));
+
+localStorage.setItem("karsStudent", JSON.stringify(student));
 
     message.style.color = "green";
     message.innerHTML = "Kayıt başarılı! Geziye hoş geldin.<br><br>" +
