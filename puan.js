@@ -13,7 +13,7 @@ function awardKarsPoint(pageId, questionId) {
         localStorage.getItem("karsAnswers") || "{}"
     );
 
-    let key = pageId + "_" + questionId;
+    let key = student.name + "_" + pageId + "_" + questionId;
 
     if (answers[key]) {
         return false;
