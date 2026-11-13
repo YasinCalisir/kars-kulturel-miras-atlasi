@@ -171,10 +171,23 @@ korumak hepimizin sorumluluğudur.')">🔊 Sesli Dinle</button>
 <p>Kars'ın doğal güzelliklerini birlikte keşfediyoruz.</p>
 </footer>
 
- <script src="puan.js"></script>
+<script src="puan.js"></script>
 <script>
 let score = 0;
 let answered = {1:false, 2:false};
+
+function speak(text) {
+    if (!('speechSynthesis' in window)) {
+        alert('Tarayıcınız sesli anlatımı desteklemiyor.');
+        return;
+    }
+
+    speechSynthesis.cancel();
+    const msg = new SpeechSynthesisUtterance(text);
+    msg.lang = 'tr-TR';
+    msg.rate = 0.9;
+    speechSynthesis.speak(msg);
+}
 
 function answer(question, correct) {
     if (answered[question]) return;
@@ -184,11 +197,15 @@ function answer(question, correct) {
     const result = document.getElementById('result');
 
     if (correct) {
-        score += 10;
+        const awarded = awardKarsPoint("cildir", question);
 
-        awardKarsPoint("cildir", question);
+        if (awarded) {
+            score += 10;
+            result.innerHTML = '✅ Doğru cevap! 10 puan kazandın!';
+        } else {
+            result.innerHTML = '✅ Bu sorunun puanını daha önce kazandın.';
+        }
 
-        result.innerHTML = '✅ Doğru cevap! 10 puan kazandın!';
         result.style.color = 'green';
     } else {
         result.innerHTML = '❌ Yanlış cevap!';
@@ -199,34 +216,7 @@ function answer(question, correct) {
         result.innerHTML += '<br>🎉 Yarışma tamamlandı! Puanın: ' + score + '/20';
     }
 }
-
-function speak(text){
- if(!('speechSynthesis' in window)){
- alert('Tarayıcınız sesli anlatımı desteklemiyor.');
- return;
- }
- speechSynthesis.cancel();
- const msg=new SpeechSynthesisUtterance(text);
- msg.lang='tr-TR';
- msg.rate=0.9;
- speechSynthesis.speak(msg);
-}
-
-function answer(question,correct){
- if(answered[question]) return;
- answered[question]=true;
- if(correct) score++;
-
- const result=document.getElementById('result');
-
- if(Object.keys(answered).every(k=>answered[k])){
- result.innerHTML='🎉 Yarışma tamamlandı! Puanın: '+score+'/2';
- result.style.color=score===2?'green':'#b36a16';
- }else{
- result.innerHTML=correct?'Doğru cevap! 👏':'Tekrar deneyebilirsin!';
- result.style.color=correct?'green':'#b36a16';
- }
-}
 </script>
-</body>
+
+ </body>
 </html>
