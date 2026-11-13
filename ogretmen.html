@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kars Atlası - Öğretmen Paneli</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f0f4f8;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 750px;
+    margin: 30px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 3px 12px #ccc;
+}
+
+h1 {
+    text-align: center;
+    color: #174873;
+}
+
+.info {
+    background: #eaf4ff;
+    padding: 15px;
+    margin: 12px 0;
+    border-radius: 8px;
+    font-size: 18px;
+}
+
+.score {
+    background: #e5f8e9;
+    color: #167333;
+    padding: 20px;
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.warning {
+    text-align: center;
+    color: #777;
+    margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🏫 Öğretmen Paneli</h1>
+<h2>Öğrenci Bilgileri</h2>
+
+<div id="studentInfo"></div>
+
+<div class="score" id="studentScore"></div>
+
+<p class="warning">
+Kars Kültürel Miras Atlası
+</p>
+
+</div>
+
+<script>
+
+let student = JSON.parse(
+    localStorage.getItem("karsStudent") || "null"
+);
+
+let info = document.getElementById("studentInfo");
+let score = document.getElementById("studentScore");
+
+if (student) {
+
+    info.innerHTML =
+        '<div class="info">👤 Öğrenci: ' + student.name + '</div>' +
+        '<div class="info">🎓 Sınıf: ' + student.studentClass + '</div>' +
+        '<div class="info">🏫 Okul: ' + student.school + '</div>';
+
+    score.innerText =
+        "🏆 Toplam Puan: " + (Number(student.score) || 0);
+
+} else {
+
+    info.innerHTML = "Henüz öğrenci kaydı bulunamadı.";
+    score.innerText = "Puan: 0";
+
+}
+
+</script>
+
+</body>
+</html>
