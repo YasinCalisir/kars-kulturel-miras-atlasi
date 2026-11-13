@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -12,91 +13,117 @@ body {
     margin: 0;
     padding: 20px;
 }
-
 .container {
-    max-width: 750px;
+    max-width: 900px;
     margin: 30px auto;
     background: white;
     padding: 25px;
     border-radius: 15px;
     box-shadow: 0 3px 12px #ccc;
 }
-
 h1 {
     text-align: center;
     color: #174873;
 }
-
-.info {
-    background: #eaf4ff;
-    padding: 15px;
-    margin: 12px 0;
-    border-radius: 8px;
-    font-size: 18px;
+h2 {
+    color: #174873;
 }
-
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+th {
+    background: #174873;
+    color: white;
+}
+tr:nth-child(even) {
+    background: #f2f6fa;
+}
 .score {
-    background: #e5f8e9;
-    color: #167333;
-    padding: 20px;
-    text-align: center;
-    font-size: 26px;
     font-weight: bold;
-    border-radius: 10px;
-    margin-top: 20px;
+    color: #167333;
 }
-
 .warning {
-    text-align: center;
     color: #777;
-    margin-top: 20px;
+    text-align: center;
 }
 </style>
 </head>
 
 <body>
-
 <div class="container">
 
-<h1>🏫 Öğretmen Paneli</h1>
-<h2>Öğrenci Bilgileri</h2>
+<h1>🏫 Kars Atlası Öğretmen Paneli</h1>
+<h2>🏆 Öğrenci Başarı Sıralaması</h2>
 
-<div id="studentInfo"></div>
+<p id="studentCount"></p>
 
-<div class="score" id="studentScore"></div>
+<table>
+<thead>
+<tr>
+<th>Sıra</th>
+<th>Öğrenci</th>
+<th>Sınıf</th>
+<th>Okul</th>
+<th>Puan</th>
+</tr>
+</thead>
+<tbody id="studentList"></tbody>
+</table>
 
-<p class="warning">
-Kars Kültürel Miras Atlası
-</p>
+<p class="warning">Kars Kültürel Miras Atlası</p>
 
 </div>
 
 <script>
-
-let student = JSON.parse(
-    localStorage.getItem("karsStudent") || "null"
+let students = JSON.parse(
+    localStorage.getItem("karsStudents") || "[]"
 );
 
-let info = document.getElementById("studentInfo");
-let score = document.getElementById("studentScore");
+students.sort((a, b) =>
+    (Number(b.score) || 0) - (Number(a.score) || 0)
+);
 
-if (student) {
+let list = document.getElementById("studentList");
 
-    info.innerHTML =
-        '<div class="info">👤 Öğrenci: ' + student.name + '</div>' +
-        '<div class="info">🎓 Sınıf: ' + student.studentClass + '</div>' +
-        '<div class="info">🏫 Okul: ' + student.school + '</div>';
+document.getElementById("studentCount").innerText =
+    "Toplam öğrenci sayısı: " + students.length;
 
-    score.innerText =
-        "🏆 Toplam Puan: " + (Number(student.score) || 0);
+students.slice(0, 10).forEach((student, index) => {
+    let row = document.createElement("tr");
 
-} else {
+    let values = [
+        index + 1,
+        student.name || "",
+        student.studentClass || "",
+        student.school || "",
+        (Number(student.score) || 0) + " puan"
+    ];
 
-    info.innerHTML = "Henüz öğrenci kaydı bulunamadı.";
-    score.innerText = "Puan: 0";
+    values.forEach((value, i) => {
+        let cell = document.createElement("td");
+        cell.textContent = value;
 
+        if (i === 4) {
+            cell.className = "score";
+        }
+
+        row.appendChild(cell);
+    });
+
+    list.appendChild(row);
+});
+
+if (students.length === 0) {
+    list.innerHTML =
+        '<tr><td colspan="5">Henüz öğrenci kaydı bulunamadı.</td></tr>';
 }
-
 </script>
 
 </body>
