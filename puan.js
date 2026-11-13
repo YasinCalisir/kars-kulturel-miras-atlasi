@@ -1,5 +1,5 @@
-
 function awardKarsPoint(pageId, questionId) {
+
     let student = JSON.parse(
         localStorage.getItem("karsStudent") || "null"
     );
@@ -26,10 +26,29 @@ function awardKarsPoint(pageId, questionId) {
     localStorage.setItem("karsAnswers", JSON.stringify(answers));
     localStorage.setItem("karsStudent", JSON.stringify(student));
 
+    let students = JSON.parse(
+        localStorage.getItem("karsStudents") || "[]"
+    );
+
+    let index = students.findIndex(s =>
+        s.name === student.name &&
+        s.school === student.school &&
+        s.studentClass === student.studentClass
+    );
+
+    if (index >= 0) {
+        students[index].score = student.score;
+    } else {
+        students.push(student);
+    }
+
+    localStorage.setItem("karsStudents", JSON.stringify(students));
+
     return true;
 }
 
 function getKarsScore() {
+
     let student = JSON.parse(
         localStorage.getItem("karsStudent") || "null"
     );
