@@ -4,161 +4,204 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kars Kültürel Miras Atlası</title>
-<meta name="description" content="Kars'ın tarihî ve kültürel mirasını dijital ortamda keşfedin.">
+<title>Şehrimizi Tanıyalım | Dijital Kars Gezisi</title>
+
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 body {
-  font-family: Arial, sans-serif;
-  background: #f5f3ef;
-  color: #263449;
-  line-height: 1.6;
+    font-family: Arial, sans-serif;
+    background: #f3f6fa;
+    color: #263445;
+    line-height: 1.6;
 }
 
 header {
-  background: #172b43;
-  color: white;
-  padding: 22px 7%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
+    background: #123b55;
+    color: white;
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
 }
 
-.logo { font-size: 21px; font-weight: bold; }
+.logo {
+    font-size: 23px;
+    font-weight: bold;
+}
 
 nav a {
-  color: white;
-  text-decoration: none;
-  margin-left: 22px;
-  font-size: 14px;
+    color: white;
+    text-decoration: none;
+    margin-left: 18px;
+    font-size: 14px;
 }
 
 .hero {
-  background: linear-gradient(125deg, #172b43, #31566d);
-  color: white;
-  padding: 90px 8%;
-  text-align: center;
-}
-
-.hero .tag {
-  color: #e6c58c;
-  letter-spacing: 3px;
-  font-size: 13px;
-  margin-bottom: 18px;
+    background: linear-gradient(120deg, #123b55, #277b87);
+    color: white;
+    padding: 75px 8%;
+    text-align: center;
 }
 
 .hero h1 {
-  font-size: clamp(32px, 5vw, 55px);
-  margin-bottom: 20px;
+    font-size: clamp(32px, 5vw, 55px);
+    margin-bottom: 15px;
 }
 
 .hero p {
-  max-width: 700px;
-  margin: auto;
-  color: #e3eaf0;
-  font-size: 17px;
+    font-size: 18px;
+    max-width: 700px;
+    margin: auto;
 }
 
-.button {
-  display: inline-block;
-  margin-top: 28px;
-  background: #d5aa68;
-  color: #172b43;
-  padding: 13px 26px;
-  border-radius: 7px;
-  text-decoration: none;
-  font-weight: bold;
+.btn {
+    display: inline-block;
+    background: #f5b942;
+    color: #263445;
+    padding: 13px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 25px;
 }
 
-section {
-  padding: 65px 8%;
+.container {
+    max-width: 1150px;
+    margin: auto;
+    padding: 45px 20px;
 }
 
 .section-title {
-  text-align: center;
-  margin-bottom: 35px;
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 .section-title h2 {
-  color: #172b43;
-  font-size: 30px;
-  margin-bottom: 10px;
+    color: #123b55;
+    font-size: 29px;
 }
 
-.section-title p { color: #667386; }
+.section-title p {
+    color: #667788;
+}
 
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 24px;
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
 }
 
 .card {
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 5px 20px rgba(0,0,0,.07);
-  transition: transform .2s;
+    background: white;
+    border-radius: 14px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,.06);
+    transition: .2s;
 }
 
-.card:hover { transform: translateY(-5px); }
-
-.card-image {
-  height: 150px;
-  background: linear-gradient(135deg, #b88c5b, #e3c99c);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 55px;
+.card:hover {
+    transform: translateY(-5px);
 }
 
-.card-content { padding: 23px; }
-
-.card-content h3 {
-  color: #172b43;
-  margin-bottom: 10px;
+.emoji {
+    font-size: 43px;
+    margin-bottom: 12px;
 }
 
-.card-content p {
-  color: #697586;
-  font-size: 14px;
-  min-height: 65px;
+.card h3 {
+    color: #164c65;
+    margin-bottom: 8px;
 }
 
-.card-content a {
-  display: inline-block;
-  margin-top: 15px;
-  color: #9b703d;
-  font-weight: bold;
-  text-decoration: none;
+.card p {
+    color: #667788;
+    font-size: 14px;
 }
 
-.about {
-  background: #e9e5dc;
-  text-align: center;
+.card a {
+    display: inline-block;
+    margin-top: 15px;
+    color: #147c8b;
+    font-weight: bold;
+    text-decoration: none;
 }
 
-.about p {
-  max-width: 800px;
-  margin: auto;
-  color: #536071;
+.map-section {
+    background: #e6f0f3;
+    padding: 45px 20px;
+    text-align: center;
+}
+
+.map-box {
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    max-width: 750px;
+    margin: 20px auto 0;
+}
+
+.map-box p {
+    margin-bottom: 10px;
+}
+
+.quiz {
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    max-width: 650px;
+    margin: auto;
+    box-shadow: 0 4px 15px rgba(0,0,0,.06);
+}
+
+.quiz button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: 1px solid #dce4e9;
+    border-radius: 8px;
+    background: #f3f6fa;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.quiz button:hover {
+    background: #dceef0;
+}
+
+#result {
+    margin-top: 15px;
+    font-weight: bold;
 }
 
 footer {
-  background: #172b43;
-  color: #dce4eb;
-  text-align: center;
-  padding: 30px 15px;
-  font-size: 14px;
+    background: #123b55;
+    color: white;
+    text-align: center;
+    padding: 28px 15px;
+    margin-top: 40px;
 }
 
 @media(max-width:600px) {
-  header { justify-content: center; text-align: center; }
-  nav a { margin: 0 8px; }
-  .hero { padding: 65px 6%; }
+    header {
+        justify-content: center;
+        text-align: center;
+    }
+
+    nav a {
+        margin: 5px;
+    }
+
+    .hero {
+        padding: 55px 20px;
+    }
 }
 </style>
 </head>
@@ -166,95 +209,130 @@ footer {
 <body>
 
 <header>
-  <div class="logo">🏛 KARS KÜLTÜREL MİRAS ATLASI</div>
-  <nav>
-    <a href="#anasayfa">Ana Sayfa</a>
-    <a href="#miraslar">Kültürel Miras</a>
-    <a href="#proje">Proje Hakkında</a>
-  </nav>
+    <div class="logo">🏛️ ŞEHRİMİZİ TANIYALIM</div>
+    <nav>
+        <a href="#kesfet">Keşfet</a>
+        <a href="#harita">Harita</a>
+        <a href="#yarismalar">Bilgi Yarışması</a>
+    </nav>
 </header>
 
-<div class="hero" id="anasayfa">
-  <div class="tag">TARİHİN İZİNDE BİR ŞEHİR</div>
-  <h1>Kars Kültürel Miras Atlası</h1>
-  <p>
-    Binlerce yıllık tarihi, eşsiz mimarisi ve zengin kültürel
-    değerleriyle Kars'ın mirasını dijital dünyada keşfedin.
-    Geçmişten geleceğe uzanan bu yolculuğa siz de katılın.
-  </p>
-  <a href="#miraslar" class="button">Keşfetmeye Başla →</a>
-</div>
-
-<section id="miraslar">
-  <div class="section-title">
-    <h2>Kültürel Miras Alanları</h2>
-    <p>Kars'ın tarihî zenginliklerini yakından tanıyın.</p>
-  </div>
-
-  <div class="cards">
-
-    <div class="card">
-      <div class="card-image">🏰</div>
-      <div class="card-content">
-        <h3>Ani Arkeolojik Alanı</h3>
-        <p>
-          Binbir Kilise Şehri olarak bilinen Ani'nin
-          tarihî yapılarını ve kültürel mirasını keşfedin.
-        </p>
-        <a href="001_Ani_Arkeolojik_Alan.html">
-          Ayrıntılı Bilgi →
-        </a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-image">🧀</div>
-      <div class="card-content">
-        <h3>Kars Peynir Müzesi</h3>
-        <p>Kars'ın gravyer, eski kaşar ve geleneksel peynir kültürünü keşfedin.</p>
-        <a href="002_Kars_Peynir_Muzesi.html">Ayrıntılı Bilgi →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-image">🏛</div>
-      <div class="card-content">
-        <h3>Kars Kalesi</h3>
-        <p>Kars'ın tarihî savunma yapısını ve geçmişini tanıyın.</p>
-        <a href="003_Kars_Kalesi.html">Detayları İncele</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-image">🕌</div>
-      <div class="card-content">
-        <h3>Evliya Camii</h3>
-        <p>Kars'ın tarihî ve mimari değerlerini keşfedin.</p>
-        <a href="004_Evliya_Camii.html">Detayları İncele</a>
-      </div>
-    </div>
-
-  </div>
+<section class="hero">
+    <h1>Kars'ı Görmeden Kars'ı Keşfet!</h1>
+    <p>
+        Yaşadığımız şehrin tarihini, kültürünü ve doğal
+        güzelliklerini birlikte tanıyalım.
+        Köyümüzdeki okulumuzdan Kars'a dijital bir yolculuk!
+    </p>
+    <a href="#kesfet" class="btn">🚀 Geziye Başla</a>
 </section>
 
-<section class="about" id="proje">
-  <div class="section-title">
-    <h2>Proje Hakkında</h2>
-  </div>
-  <p>
-    Kars Kültürel Miras Atlası, şehrimizin tarihî ve kültürel
-    zenginliklerini dijital ortamda kayıt altına almak,
-    tanıtmak ve gelecek nesillere aktarmak amacıyla
-    hazırlanmıştır. QR kod teknolojisi ve dijital harita
-    desteğiyle kültürel miras alanlarına kolay erişim
-    sağlanması hedeflenmektedir.
-  </p>
+<section class="container" id="kesfet">
+
+    <div class="section-title">
+        <h2>🌍 Kars'ı Birlikte Keşfedelim</h2>
+        <p>İlgi duyduğun bölümü seç ve keşfetmeye başla.</p>
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+            <div class="emoji">🏰</div>
+            <h3>Tarihî Kars</h3>
+            <p>Kars Kalesi, Taş Köprü ve tarihî yapıları tanı.</p>
+            <a href="kars_atlas_haritasi.html">Keşfet →</a>
+        </div>
+
+        <div class="card">
+            <div class="emoji">🏛️</div>
+            <h3>Ani Antik Kenti</h3>
+            <p>Binlerce yıllık tarihin izlerini keşfet.</p>
+            <a href="kars_atlas_haritasi.html">Keşfet →</a>
+        </div>
+
+        <div class="card">
+            <div class="emoji">🕌</div>
+            <h3>Tarihî Mimari</h3>
+            <p>Camileri, tarihî evleri ve farklı mimari eserleri tanı.</p>
+            <a href="kars_atlas_haritasi.html">Keşfet →</a>
+        </div>
+
+        <div class="card">
+            <div class="emoji">🏞️</div>
+            <h3>Doğal Güzellikler</h3>
+            <p>Çıldır Gölü, Kuyucuk ve Sarıkamış'ı keşfet.</p>
+            <a href="kars_atlas_haritasi.html">Keşfet →</a>
+        </div>
+
+        <div class="card">
+            <div class="emoji">🧀</div>
+            <h3>Kars'ın Kültürü</h3>
+            <p>Yemeklerimizi, geleneklerimizi ve müziğimizi tanı.</p>
+            <a href="kars_atlas_haritasi.html">Keşfet →</a>
+        </div>
+
+        <div class="card">
+            <div class="emoji">🇹🇷</div>
+            <h3>Millî Değerlerimiz</h3>
+            <p>Sarıkamış'ı, tarihî şahsiyetleri ve değerlerimizi öğren.</p>
+            <a href="kars_atlas_haritasi.html">Keşfet →</a>
+        </div>
+
+    </div>
+</section>
+
+<section class="map-section" id="harita">
+    <div class="section-title">
+        <h2>📍 Dijital Kars Haritası</h2>
+        <p>Kars'ın tarihî ve kültürel noktalarını harita üzerinde bul.</p>
+    </div>
+
+    <div class="map-box">
+        <div class="emoji">🗺️</div>
+        <h3>Kars Kültürel Miras Haritası</h3>
+        <p>Haritayı açarak kültürel miras noktalarımızı inceleyebilirsin.</p>
+        <a href="kars_atlas_haritasi.html" class="btn">
+            Haritayı Aç
+        </a>
+    </div>
+</section>
+
+<section class="container" id="yarismalar">
+    <div class="section-title">
+        <h2>🧠 Öğrendiklerimizi Test Edelim</h2>
+        <p>Haydi bakalım, Kars'ı ne kadar tanıyorsun?</p>
+    </div>
+
+    <div class="quiz">
+        <h3>Kars'ın ünlü tarihî antik kenti hangisidir?</h3>
+
+        <button onclick="checkAnswer(false)">A) Efes Antik Kenti</button>
+        <button onclick="checkAnswer(true)">B) Ani Antik Kenti</button>
+        <button onclick="checkAnswer(false)">C) Göbeklitepe</button>
+
+        <div id="result"></div>
+    </div>
 </section>
 
 <footer>
-  <p>© 2026 Kars Kültürel Miras Atlası</p>
-  <p>Geçmişimizi tanıyor, geleceğe aktarıyoruz.</p>
+    <h3>🏛️ Şehrimizi Tanıyalım</h3>
+    <p>Kars'ın tarihini, kültürünü ve güzelliklerini birlikte keşfediyoruz.</p>
+    <p>Gelecek nesillere kültürel mirasımızı tanıtmak için...</p>
 </footer>
+
+<script>
+function checkAnswer(correct) {
+    const result = document.getElementById("result");
+
+    if (correct) {
+        result.innerHTML = "🎉 Tebrikler! Doğru cevap.";
+        result.style.color = "green";
+    } else {
+        result.innerHTML = "Tekrar dene! Biraz daha düşün.";
+        result.style.color = "red";
+    }
+}
+</script>
 
 </body>
 </html>
