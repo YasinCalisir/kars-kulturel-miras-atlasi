@@ -165,6 +165,7 @@ function check(q, a) {
 
     if (a === answers[q]) {
         result.innerHTML = "✅ Doğru cevap! Harika.";
+        awardKarsPoint("kuyucuk", q);
         result.style.color = "green";
     } else {
         result.innerHTML = "❌ Tekrar dene. Bir kez daha düşün!";
@@ -172,6 +173,6 @@ function check(q, a) {
     }
 }
 </script>
-
+<script src="puan.js"></script>
 </body>
 </html>
