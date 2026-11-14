@@ -98,6 +98,7 @@ let correct=q===1?2:1;
 let result=document.getElementById("r"+q);
 if(a===correct){
 result.innerHTML="✅ Doğru cevap! Harika.";
+  awardKarsPoint("sarikamis", q);
 result.style.color="green";
 }else{
 result.innerHTML="❌ Tekrar dene. Bir kez daha düşün!";
@@ -105,6 +106,6 @@ result.style.color="red";
 }
 }
 </script>
-
+<script src="puan.js"></script>
 </body>
 </html>
