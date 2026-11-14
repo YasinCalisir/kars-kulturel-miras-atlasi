@@ -228,8 +228,10 @@ footer {
     border-radius:12px;
     font-weight:bold;
 ">
-    🏆 Toplam Puanın:
-    <span id="totalScore">0</span>
+  <span id="studentNameDisplay"></span>
+<br><br>
+🏆 Toplam Puanın:
+<span id="totalScore">0</span>
 </div>
     <h1>Kars'ı Görmeden Kars'ı Keşfet!</h1>
     <p>
@@ -359,6 +361,10 @@ function checkAnswer(correct) {
 
     if (student) {
         document.getElementById("studentScore").style.display = "block";
+
+        document.getElementById("studentNameDisplay").textContent =
+            "Merhaba, " + student.name + "!";
+
         document.getElementById("totalScore").textContent =
             Number(student.score) || 0;
     }
