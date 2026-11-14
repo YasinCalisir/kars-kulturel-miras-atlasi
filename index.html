@@ -218,6 +218,19 @@ footer {
 </header>
 
 <section class="hero">
+    <div id="studentScore" style="
+    display:none;
+    background:white;
+    color:#123b55;
+    max-width:300px;
+    margin:25px auto 0;
+    padding:15px;
+    border-radius:12px;
+    font-weight:bold;
+">
+    🏆 Toplam Puanın:
+    <span id="totalScore">0</span>
+</div>
     <h1>Kars'ı Görmeden Kars'ı Keşfet!</h1>
     <p>
         Yaşadığımız şehrin tarihini, kültürünü ve doğal
@@ -339,6 +352,19 @@ function checkAnswer(correct) {
         result.style.color = "red";
     }
 }
+    function showStudentScore() {
+    let student = JSON.parse(
+        localStorage.getItem("karsStudent") || "null"
+    );
+
+    if (student) {
+        document.getElementById("studentScore").style.display = "block";
+        document.getElementById("totalScore").textContent =
+            Number(student.score) || 0;
+    }
+}
+
+showStudentScore();
 </script>
 
 </body>
