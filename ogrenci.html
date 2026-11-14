@@ -113,6 +113,13 @@ footer {
         <button onclick="saveStudent()">Geziye Başla</button>
 
         <p id="message"></p>
+        <p id="homeLink" style="display:none; text-align:center; margin-top:20px;">
+    <a href="index.html" style="
+        color:#17618c;
+        font-weight:bold;
+        text-decoration:none;
+    ">🏠 Ana Sayfaya Dön</a>
+</p>
     </div>
 </div>
 
@@ -181,6 +188,7 @@ function saveStudent() {
     localStorage.setItem("karsStudent", JSON.stringify(student));
 
     message.style.color = "green";
+    document.getElementById("homeLink").style.display = "block";
     message.innerHTML =
         "Kayıt başarılı! Geziye hoş geldin.<br><br>" +
         "🏆 Toplam Puanın: " + student.score;
