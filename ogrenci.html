@@ -121,11 +121,11 @@ footer {
 </footer>
 
 <script>
+    
 function saveStudent() {
     let name = document.getElementById("studentName").value.trim();
     let studentClass = document.getElementById("studentClass").value;
     let school = document.getElementById("schoolName").value.trim();
-
     let message = document.getElementById("message");
 
     if (!name || !studentClass || !school) {
@@ -134,57 +134,58 @@ function saveStudent() {
         return;
     }
 
-   let oldStudent = JSON.parse(
-    localStorage.getItem("karsStudent") || "null"
-);
+    let students = JSON.parse(
+        localStorage.getItem("karsStudents") || "[]"
+    );
 
-let oldScore = 0;
+    let oldStudent = JSON.parse(
+        localStorage.getItem("karsStudent") || "null"
+    );
 
-if (
-    oldStudent &&
-    oldStudent.name === name &&
-    oldStudent.school === school &&
-    oldStudent.studentClass === studentClass
-) {
-    oldScore = Number(oldStudent.score) || 0;
-}
+    let existingIndex = students.findIndex(s =>
+        s.name === name &&
+        s.school === school &&
+        s.studentClass === studentClass
+    );
 
-let student = {
-    name: name,
-    studentClass: studentClass,
-    school: school,
-    score: oldScore
-};
+    let oldScore = 0;
+
+    if (oldStudent &&
+        oldStudent.name === name &&
+        oldStudent.school === school &&
+        oldStudent.studentClass === studentClass) {
+        oldScore = Number(oldStudent.score) || 0;
+    }
+
+    if (existingIndex >= 0) {
+        oldScore = Math.max(
+            oldScore,
+            Number(students[existingIndex].score) || 0
+        );
+    }
+
+    let student = {
+        name: name,
+        studentClass: studentClass,
+        school: school,
+        score: oldScore
     };
 
-   let students = JSON.parse(
-    localStorage.getItem("karsStudents") || "[]"
-);
+    if (existingIndex >= 0) {
+        students[existingIndex] = student;
+    } else {
+        students.push(student);
+    }
 
-let existingIndex = students.findIndex(s =>
-    s.name === student.name &&
-    s.school === student.school &&
-    s.studentClass === student.studentClass
-);
-
-if (existingIndex >= 0) {
-  student.score = Math.max(
-    Number(student.score) || 0,
-    Number(students[existingIndex].score) || 0
-);
-    students[existingIndex] = student;
-} else {
-    students.push(student);
-}
-
-localStorage.setItem("karsStudents", JSON.stringify(students));
-
-localStorage.setItem("karsStudent", JSON.stringify(student));
+    localStorage.setItem("karsStudents", JSON.stringify(students));
+    localStorage.setItem("karsStudent", JSON.stringify(student));
 
     message.style.color = "green";
-    message.innerHTML = "Kayıt başarılı! Geziye hoş geldin.<br><br>" +
-    "🏆 Toplam Puanın: " + getKarsScore();
+    message.innerHTML =
+        "Kayıt başarılı! Geziye hoş geldin.<br><br>" +
+        "🏆 Toplam Puanın: " + student.score;
 }
+
 </script>
 <script src="puan.js"></script>
 </body>
