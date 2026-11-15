@@ -148,7 +148,7 @@ footer {
 <footer>
     Şehrimizi Tanıyalım – Kars'ı görmeden Kars'ı keşfet!
 </footer>
-
+<script src="puan.js"></script>
 <script>
 function speak() {
   let text = "Kuyucuk Gölü, Kars'ın Arpaçay ilçesinde bulunan önemli bir doğal güzelliktir. Göçmen kuşlar için önemli bir yaşam ve konaklama alanıdır. Flamingolar da burada görülebilir. Kuyucuk Gölü, 2009 yılında Ramsar listesine alınmıştır. Doğal yaşamı korumak hepimizin görevidir.";
@@ -158,8 +158,19 @@ function speak() {
     speechSynthesis.cancel();
     speechSynthesis.speak(msg);
 }
-
+let answered = getKarsAnsweredQuestions("kuyucuk", 3);
 function check(q, a) {
+
+    if (!localStorage.getItem("karsStudent")) {
+        alert("Önce Öğrenci Girişi yapmalısın!");
+        return;
+    }
+
+    if (answered[q]) return;
+
+    answered[q] = true;
+    markKarsQuestionAnswered("kuyucuk", q);
+
     let answers = {1:2, 2:1, 3:2};
     let result = document.getElementById("r" + q);
 
@@ -168,11 +179,11 @@ function check(q, a) {
         awardKarsPoint("kuyucuk", q);
         result.style.color = "green";
     } else {
-        result.innerHTML = "❌ Tekrar dene. Bir kez daha düşün!";
+        result.innerHTML = "❌ Yanlış cevap. Bu soru tamamlandı.";
         result.style.color = "red";
     }
 }
 </script>
-<script src="puan.js"></script>
+
 </body>
 </html>
