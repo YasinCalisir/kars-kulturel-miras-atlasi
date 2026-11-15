@@ -349,13 +349,7 @@ footer a { color: #f2d39d; }
 
 <script>
 let score = 0;
-let answered = {
-  1: false,
-  2: false,
-  3: false,
-  4: false,
-  5: false
-};
+let answered = getKarsAnsweredQuestions("peynir-muzesi", 5);
 
 function answer(question, correct) {
   if (answered[question]) return;
@@ -366,7 +360,7 @@ function answer(question, correct) {
   }
 
   answered[question] = true;
-
+  markKarsQuestionAnswered("peynir-muzesi", question);
   const result = document.getElementById("result");
   const scoreDisplay = document.getElementById("score");
 
