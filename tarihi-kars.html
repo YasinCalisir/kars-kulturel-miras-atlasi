@@ -290,7 +290,7 @@ function answer(question, correct) {
     alert("Önce Öğrenci Girişi yapmalısın!");
     return;
   }
-
+  answered[question] = true;
   markKarsQuestionAnswered("tarihi-mimari", question);
 
   const result = document.getElementById("result");
