@@ -199,14 +199,50 @@ inşa edilmiştir.')">
     </div>
 </section>
 
+
 <section class="quiz">
-<h2>🧠 Öğrendiklerimizi Test Edelim</h2>
-<p><strong>Taş Köprü hangi akarsu üzerinde bulunmaktadır?</strong></p>
-<button onclick="answer(false)">A) Aras Nehri</button>
-<button onclick="answer(true)">B) Kars Çayı</button>
-<button onclick="answer(false)">C) Arpaçay</button>
-<div id="result"></div>
+<h2>🧠 Tarihî Kars Bilgi Yarışması</h2>
+<p>Doğru cevapları bul, puanları topla!</p>
+
+<div class="card">
+<h3>1. Kars Kalesi hangi yılda yeniden yaptırılmıştır?</h3>
+<button onclick="answer(1,false)">A) 1453</button>
+<button onclick="answer(1,true)">B) 1579</button>
+<button onclick="answer(1,false)">C) 1923</button>
+</div>
+
+<div class="card">
+<h3>2. Evliya Camii'ni kim yaptırmıştır?</h3>
+<button onclick="answer(2,false)">A) Sultan Melik İzzettin</button>
+<button onclick="answer(2,true)">B) Lala Mustafa Paşa</button>
+<button onclick="answer(2,false)">C) Timur</button>
+</div>
+
+<div class="card">
+<h3>3. Taş Köprü hangi akarsu üzerinde bulunur?</h3>
+<button onclick="answer(3,true)">A) Kars Çayı</button>
+<button onclick="answer(3,false)">B) Aras Nehri</button>
+<button onclick="answer(3,false)">C) Arpaçay</button>
+</div>
+
+<div class="card">
+<h3>4. Kümbet Camii geçmişte hangi adla bilinirdi?</h3>
+<button onclick="answer(4,false)">A) Ulu Cami</button>
+<button onclick="answer(4,true)">B) On İki Havariler Kilisesi</button>
+<button onclick="answer(4,false)">C) Evliya Camii</button>
+</div>
+
+<div class="card">
+<h3>5. Namık Kemal Kültür Evi kimin çocukluğunu geçirdiği evdir?</h3>
+<button onclick="answer(5,true)">A) Namık Kemal</button>
+<button onclick="answer(5,false)">B) Ebul Hasan Harakani</button>
+<button onclick="answer(5,false)">C) Lala Mustafa Paşa</button>
+</div>
+
+<div id="result">Yarışmaya hazır mısın?</div>
+<p>🏆 Puanın: <span id="score">0</span> / 50</p>
 </section>
+
 
 </main>
 
@@ -238,6 +274,53 @@ function answer(correct){
  result.innerHTML='Tekrar dene! Biraz daha düşün.';
  result.style.color='red';
  }
+}
+</script>
+
+<script src="puan.js"></script>
+
+<script>
+let score = 0;
+let answered = {
+  1: false,
+  2: false,
+  3: false,
+  4: false,
+  5: false
+};
+
+function answer(question, correct) {
+  if (answered[question]) return;
+
+  if (!localStorage.getItem("karsStudent")) {
+    alert("Önce Öğrenci Girişi yapmalısın!");
+    return;
+  }
+
+  answered[question] = true;
+
+  const result = document.getElementById("result");
+  const scoreDisplay = document.getElementById("score");
+
+  if (correct) {
+    const awarded = awardKarsPoint("tarihi-mimari", question);
+
+    if (awarded) {
+      score += 10;
+      result.textContent = "Doğru cevap! 10 puan kazandın. 👏";
+    } else {
+      result.textContent = "Bu sorudan daha önce puan kazanmışsın.";
+    }
+  } else {
+    result.textContent = "Yanlış cevap. Bir sonraki soruya geçelim.";
+  }
+
+  scoreDisplay.textContent = score;
+
+  if (Object.values(answered).every(Boolean)) {
+    result.textContent =
+      "🎉 Yarışma tamamlandı! Bu oturumda kazandığın puan: " + score + "/50";
+  }
 }
 </script>
 
