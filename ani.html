@@ -192,18 +192,18 @@ function answer(question,correct){
  if(answered[question]) return;
  answered[question]=true;
 
- if(correct) score++;
-
+ if(correct) score += 10;
+if(correct) awardKarsPoint("ani", question);
  const result=document.getElementById('result');
  if(Object.keys(answered).every(k=>answered[k])){
- result.innerHTML='🎉 Yarışma tamamlandı! Puanın: '+score+'/2';
- result.style.color=score===2?'green':'#b36a16';
+ result.innerHTML='🎉 Yarışma tamamlandı! Puanın: '+score+'/20';
+ result.style.color=score===20?'green':'#b36a16';
  }else{
  result.innerHTML=correct?'Doğru cevap! 👏':'Bu cevap doğru değil. Bir sonraki soruya geçelim.';
  result.style.color=correct?'green':'#b36a16';
  }
 }
 </script>
-
+<script src="puan.js"></script>
 </body>
 </html>
