@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Millî Değerlerimiz | Kars Kültürel Miras Atlası</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f3f6fa;color:#263445;line-height:1.7}
+header{background:#123b55;color:white;padding:18px 6%;display:flex;justify-content:space-between;flex-wrap:wrap}
+header a{color:white;text-decoration:none}
+.hero{background:linear-gradient(130deg,#a51c30,#123b55);color:white;text-align:center;padding:55px 20px}
+.hero h1{font-size:clamp(30px,5vw,45px)}
+.container{max-width:1000px;margin:auto;padding:35px 20px}
+.card,.intro,.quiz{background:white;padding:23px;border-radius:14px;margin-bottom:20px;box-shadow:0 4px 14px #0000000c}
+h2,h3{color:#164c65;margin-bottom:10px}
+.emoji{font-size:45px;margin-bottom:8px}
+.quiz button{display:block;width:100%;text-align:left;background:#edf3f5;border:0;padding:12px;margin-top:10px;border-radius:8px;cursor:pointer}
+#result{margin-top:15px;font-weight:bold}
+footer{background:#123b55;color:white;text-align:center;padding:25px}
+</style>
+</head>
+
+<body>
+
+<header>
+<strong>🇹🇷 KARS KÜLTÜREL MİRAS ATLASI</strong>
+<a href="index.html">← Ana Sayfaya Dön</a>
+</header>
+
+<section class="hero">
+<h1>🇹🇷 MİLLÎ DEĞERLERİMİZ</h1>
+<p>Geçmişimizi tanıyalım, değerlerimizi yaşatalım!</p>
+</section>
+
+<main class="container">
+
+<section class="intro">
+<h2>Sevgili Öğrenciler!</h2>
+<p>
+Millî değerlerimiz, bizi bir arada tutan ortak tarihimiz,
+kültürümüz ve bağımsızlık duygumuzdur.
+Bayrağımız, İstiklâl Marşımız ve tarihimiz en kıymetli
+değerlerimiz arasındadır.
+</p>
+</section>
+
+<section class="card">
+<div class="emoji">🇹🇷</div>
+<h2>1. Türk Bayrağı</h2>
+<p>
+Ay yıldızlı bayrağımız bağımsızlığımızın ve milletimizin
+birliğinin sembolüdür. Bayrağımıza saygı göstermek
+millî değerlerimize sahip çıkmaktır.
+</p>
+</section>
+
+<section class="card">
+<div class="emoji">🎵</div>
+<h2>2. İstiklâl Marşımız</h2>
+<p>
+İstiklâl Marşımız Mehmet Âkif Ersoy tarafından yazılmıştır.
+12 Mart 1921 tarihinde Türkiye Büyük Millet Meclisi
+tarafından millî marşımız olarak kabul edilmiştir.
+</p>
+</section>
+
+<section class="card">
+<div class="emoji">🇹🇷</div>
+<h2>3. Atatürk ve Millî Mücadele</h2>
+<p>
+Mustafa Kemal Atatürk, 19 Mayıs 1919 tarihinde
+Samsun'a çıkarak Millî Mücadele sürecini başlatmıştır.
+Bu mücadele, milletimizin bağımsızlık kararlılığının
+önemli bir göstergesidir.
+</p>
+</section>
+
+<section class="card">
+<div class="emoji">🕊️</div>
+<h2>4. Sarıkamış Şehitleri</h2>
+<p>
+Sarıkamış Harekâtı, 1914-1915 yıllarında yaşanmıştır.
+Vatan uğruna mücadele eden askerlerimiz, tarihimizin
+unutulmaz kahramanları arasındadır.
+Şehitlerimizi saygı ve minnetle anıyoruz.
+</p>
+</section>
+
+<section class="card">
+<div class="emoji">🏛️</div>
+<h2>5. Kars'ın Millî Mücadeledeki Yeri</h2>
+<p>
+Kars, Millî Mücadele döneminde önemli bir yere sahiptir.
+Kars, 30 Ekim 1920 tarihinde Türk ordusu tarafından
+geri alınmıştır. Bu tarih, şehrimizin tarihinde önemli
+bir dönüm noktasıdır.
+</p>
+</section>
+
+<section class="quiz">
+<h2>🧠 Millî Değerlerimiz Bilgi Yarışması</h2>
+<p>5 soruyu cevapla, toplam 50 puana ulaş!</p>
+
+<div class="card">
+<h3>1. İstiklâl Marşımızı kim yazmıştır?</h3>
+<button onclick="answer(1,true)">A) Mehmet Âkif Ersoy</button>
+<button onclick="answer(1,false)">B) Namık Kemal</button>
+<button onclick="answer(1,false)">C) Ziya Gökalp</button>
+</div>
+
+<div class="card">
+<h3>2. İstiklâl Marşımız hangi tarihte kabul edilmiştir?</h3>
+<button onclick="answer(2,false)">A) 29 Ekim 1923</button>
+<button onclick="answer(2,true)">B) 12 Mart 1921</button>
+<button onclick="answer(2,false)">C) 19 Mayıs 1919</button>
+</div>
+
+<div class="card">
+<h3>3. Millî Mücadele'yi başlatmak üzere Atatürk hangi şehre çıkmıştır?</h3>
+<button onclick="answer(3,false)">A) Ankara</button>
+<button onclick="answer(3,false)">B) İstanbul</button>
+<button onclick="answer(3,true)">C) Samsun</button>
+</div>
+
+<div class="card">
+<h3>4. Sarıkamış Harekâtı hangi yıllarda yaşanmıştır?</h3>
+<button onclick="answer(4,true)">A) 1914-1915</button>
+<button onclick="answer(4,false)">B) 1920-1921</button>
+<button onclick="answer(4,false)">C) 1938-1939</button>
+</div>
+
+<div class="card">
+<h3>5. Kars hangi tarihte Türk ordusu tarafından geri alınmıştır?</h3>
+<button onclick="answer(5,false)">A) 29 Ekim 1923</button>
+<button onclick="answer(5,true)">B) 30 Ekim 1920</button>
+<button onclick="answer(5,false)">C) 12 Mart 1921</button>
+</div>
+
+<div id="result">Yarışmaya hazır mısın?</div>
+<p>🏆 Puanın: <span id="score">0</span> / 50</p>
+</section>
+
+</main>
+
+<footer>
+<h3>Millî Değerlerimiz</h3>
+<p>Değerlerimizi tanıyor, geleceğe taşıyoruz. 🇹🇷</p>
+</footer>
+
+<script src="puan.js"></script>
+<script>
+let score = 0;
+let answered = {1:false,2:false,3:false,4:false,5:false};
+
+function answer(question, correct) {
+  if (answered[question]) return;
+
+  if (!localStorage.getItem("karsStudent")) {
+    alert("Önce Öğrenci Girişi yapmalısın!");
+    return;
+  }
+
+  answered[question] = true;
+
+  const result = document.getElementById("result");
+  const scoreDisplay = document.getElementById("score");
+
+  if (correct) {
+    const awarded = awardKarsPoint("milli-degerlerimiz", question);
+
+    if (awarded) {
+      score += 10;
+      result.textContent = "Doğru cevap! 10 puan kazandın. 👏";
+    } else {
+      result.textContent = "Bu sorudan daha önce puan kazanmışsın.";
+    }
+  } else {
+    result.textContent = "Yanlış cevap. Bir sonraki soruya geçelim.";
+  }
+
+  scoreDisplay.textContent = score;
+
+  if (Object.values(answered).every(Boolean)) {
+    result.textContent =
+      "🎉 Yarışma tamamlandı! Bu oturumda kazandığın puan: " + score + "/50";
+  }
+}
+</script>
+
+</body>
+</html>
