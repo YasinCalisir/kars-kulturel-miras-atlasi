@@ -153,7 +153,7 @@ bir dönüm noktasıdır.
 <script src="puan.js"></script>
 <script>
 let score = 0;
-let answered = {1:false,2:false,3:false,4:false,5:false};
+let answered = getKarsAnsweredQuestions("milli-degerlerimiz", 5);
 
 function answer(question, correct) {
   if (answered[question]) return;
@@ -164,6 +164,7 @@ function answer(question, correct) {
   }
 
   answered[question] = true;
+  markKarsQuestionAnswered("milli-degerlerimiz", question);
 
   const result = document.getElementById("result");
   const scoreDisplay = document.getElementById("score");
