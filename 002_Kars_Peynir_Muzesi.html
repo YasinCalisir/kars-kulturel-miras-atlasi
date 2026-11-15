@@ -272,6 +272,51 @@ footer a { color: #f2d39d; }
   </p>
 </section>
 
+<section id="yarismalar">
+  <h2>🧠 Kars Peynir Müzesi Bilgi Yarışması</h2>
+  <p>Öğrendiklerini test et, doğru cevaplarla puan kazan!</p>
+
+  <div class="card">
+    <h3>1. Kars Peynir Müzesi hangi yıl açılmıştır?</h3>
+    <button onclick="answer(1, false)">A) 2018</button>
+    <button onclick="answer(1, true)">B) 2022</button>
+    <button onclick="answer(1, false)">C) 2024</button>
+  </div>
+
+  <div class="card">
+    <h3>2. Müzenin bulunduğu tarihî yapı hangisidir?</h3>
+    <button onclick="answer(2, true)">A) Süvari Tabya</button>
+    <button onclick="answer(2, false)">B) Kars Kalesi</button>
+    <button onclick="answer(2, false)">C) Taş Köprü</button>
+  </div>
+
+  <div class="card">
+    <h3>3. Süvari Tabya hangi yılda inşa edilmiştir?</h3>
+    <button onclick="answer(3, false)">A) 1820</button>
+    <button onclick="answer(3, false)">B) 1905</button>
+    <button onclick="answer(3, true)">C) 1734</button>
+  </div>
+
+  <div class="card">
+    <h3>4. Lifli yapısıyla bilinen Kars peyniri hangisidir?</h3>
+    <button onclick="answer(4, true)">A) Çeçil Peyniri</button>
+    <button onclick="answer(4, false)">B) Kars Gravyeri</button>
+    <button onclick="answer(4, false)">C) Kars Eski Kaşarı</button>
+  </div>
+
+  <div class="card">
+    <h3>5. Kars Gravyeri hangi ürün grubundadır?</h3>
+    <button onclick="answer(5, false)">A) Et ürünleri</button>
+    <button onclick="answer(5, true)">B) Süt ürünleri</button>
+    <button onclick="answer(5, false)">C) Tahıl ürünleri</button>
+  </div>
+
+  <div class="highlight">
+    <strong id="result">Yarışmaya hazır mısın?</strong>
+    <p>🏆 Puanın: <span id="score">0</span> / 50</p>
+  </div>
+</section>
+
 <section class="info">
   <h2>Ziyaret Bilgileri</h2>
   <p><strong>Müze:</strong> Kars Peynir Müzesi</p>
@@ -299,6 +344,53 @@ footer a { color: #f2d39d; }
   <p>Geçmişimizi tanıyor, geleceğe aktarıyoruz.</p>
   <p>© 2026</p>
 </footer>
+
+<script src="puan.js"></script>
+
+<script>
+let score = 0;
+let answered = {
+  1: false,
+  2: false,
+  3: false,
+  4: false,
+  5: false
+};
+
+function answer(question, correct) {
+  if (answered[question]) return;
+
+  if (!localStorage.getItem("karsStudent")) {
+    alert("Önce Öğrenci Girişi yapmalısın!");
+    return;
+  }
+
+  answered[question] = true;
+
+  const result = document.getElementById("result");
+  const scoreDisplay = document.getElementById("score");
+
+  if (correct) {
+    const awarded = awardKarsPoint("peynir-muzesi", question);
+
+    if (awarded) {
+      score += 10;
+      result.textContent = "Doğru cevap! 10 puan kazandın. 👏";
+    } else {
+      result.textContent = "Bu sorudan daha önce puan kazanmışsın.";
+    }
+  } else {
+    result.textContent = "Yanlış cevap. Bir sonraki soruya geçelim.";
+  }
+
+  scoreDisplay.textContent = score;
+
+  if (Object.values(answered).every(Boolean)) {
+    result.textContent =
+      "🎉 Yarışma tamamlandı! Bu oturumda kazandığın puan: " + score + "/50";
+  }
+}
+</script>
 
 </body>
 </html>
