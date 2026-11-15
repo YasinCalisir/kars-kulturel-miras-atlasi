@@ -281,13 +281,7 @@ function answer(correct){
 
 <script>
 let score = 0;
-let answered = {
-  1: false,
-  2: false,
-  3: false,
-  4: false,
-  5: false
-};
+let answered = getKarsAnsweredQuestions("tarihi-mimari", 5);
 
 function answer(question, correct) {
   if (answered[question]) return;
@@ -297,7 +291,7 @@ function answer(question, correct) {
     return;
   }
 
-  answered[question] = true;
+  markKarsQuestionAnswered("tarihi-mimari", question);
 
   const result = document.getElementById("result");
   const scoreDisplay = document.getElementById("score");
