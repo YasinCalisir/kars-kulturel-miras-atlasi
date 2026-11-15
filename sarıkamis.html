@@ -84,41 +84,45 @@ footer{text-align:center;padding:25px;color:#526575}
 
 <footer>Şehrimizi Tanıyalım – Kars'ı görmeden Kars'ı keşfet!</footer>
 
-<script>
-function speak(){
-let text="Sarıkamış, Kars'ın doğal güzellikleriyle tanınan ilçelerinden biridir. Sarıçam ormanları ve kayak merkeziyle dikkat çeker. Ayrıca Sarıkamış Harekâtı ile tarihimizde önemli bir yere sahiptir. Bu topraklarda hayatını kaybeden askerlerimizi saygı ve rahmetle anıyoruz.";
-let msg=new SpeechSynthesisUtterance(text);
-msg.lang="tr-TR";
-speechSynthesis.cancel();
-speechSynthesis.speak(msg);
-}
-let answered = getKarsAnsweredQuestions("sarikamis", 2);
-function check(q,a){
 
-if (!localStorage.getItem("karsStudent")) {
-    alert("Önce Öğrenci Girişi yapmalısın!");
-    return;
-}
-
-if (answered[q]) return;
-
-answered[q] = true;
-markKarsQuestionAnswered("sarikamis", q);
-
-let correct=q===1?2:1;
-let result=document.getElementById("r"+q);
-
-if(a===correct){
-
-result.innerHTML="✅ Doğru cevap! Harika.";
-  awardKarsPoint("sarikamis", q);
-result.style.color="green";
-}else{
-result.innerHTML="❌ Yanlış cevap. Bu soru tamamlandı.";
-result.style.color="red";
-}
-}
 <script src="puan.js"></script>
 <script>
+function speak() {
+    let text = "Sarıkamış, Kars'ın doğal güzellikleriyle tanınan ilçelerinden biridir. Sarıçam ormanları ve kayak merkeziyle dikkat çeker. Ayrıca Sarıkamış Harekâtı ile tarihimizde önemli bir yere sahiptir. Bu topraklarda hayatını kaybeden askerlerimizi saygı ve rahmetle anıyoruz.";
+
+    let msg = new SpeechSynthesisUtterance(text);
+    msg.lang = "tr-TR";
+    speechSynthesis.cancel();
+    speechSynthesis.speak(msg);
+}
+
+let answered = getKarsAnsweredQuestions("sarikamis", 2);
+
+function check(q, a) {
+
+    if (!localStorage.getItem("karsStudent")) {
+        alert("Önce Öğrenci Girişi yapmalısın!");
+        return;
+    }
+
+    if (answered[q]) return;
+
+    answered[q] = true;
+    markKarsQuestionAnswered("sarikamis", q);
+
+    let correct = q === 1 ? 2 : 1;
+    let result = document.getElementById("r" + q);
+
+    if (a === correct) {
+        result.innerHTML = "✅ Doğru cevap! Harika.";
+        awardKarsPoint("sarikamis", q);
+        result.style.color = "green";
+    } else {
+        result.innerHTML = "❌ Yanlış cevap. Bu soru tamamlandı.";
+        result.style.color = "red";
+    }
+}
+</script>
+
 </body>
 </html>
