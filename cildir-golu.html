@@ -174,7 +174,7 @@ korumak hepimizin sorumluluğudur.')">🔊 Sesli Dinle</button>
 <script src="puan.js"></script>
 <script>
 let score = 0;
-let answered = {1:false, 2:false};
+let answered = getKarsAnsweredQuestions("cildir", 2);
 
 function speak(text) {
     if (!('speechSynthesis' in window)) {
@@ -193,6 +193,7 @@ function answer(question, correct) {
     if (answered[question]) return;
 
     answered[question] = true;
+    markKarsQuestionAnswered("cildir", question);
 
     const result = document.getElementById('result');
 
