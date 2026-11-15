@@ -92,20 +92,33 @@ msg.lang="tr-TR";
 speechSynthesis.cancel();
 speechSynthesis.speak(msg);
 }
-
+let answered = getKarsAnsweredQuestions("sarikamis", 2);
 function check(q,a){
+
+if (!localStorage.getItem("karsStudent")) {
+    alert("Önce Öğrenci Girişi yapmalısın!");
+    return;
+}
+
+if (answered[q]) return;
+
+answered[q] = true;
+markKarsQuestionAnswered("sarikamis", q);
+
 let correct=q===1?2:1;
 let result=document.getElementById("r"+q);
+
 if(a===correct){
+
 result.innerHTML="✅ Doğru cevap! Harika.";
   awardKarsPoint("sarikamis", q);
 result.style.color="green";
 }else{
-result.innerHTML="❌ Tekrar dene. Bir kez daha düşün!";
+result.innerHTML="❌ Yanlış cevap. Bu soru tamamlandı.";
 result.style.color="red";
 }
 }
-</script>
 <script src="puan.js"></script>
+<script>
 </body>
 </html>
