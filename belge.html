@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kars Kültürel Miras Atlası - Başarı Belgesi</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #eef4f8;
+    color: #263747;
+    text-align: center;
+    margin: 0;
+    padding: 25px;
+}
+.container {
+    max-width: 850px;
+    margin: 25px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+}
+button {
+    background: #17618c;
+    color: white;
+    border: none;
+    padding: 13px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px;
+}
+#certificate {
+    display: none;
+    border: 8px double #b28b35;
+    padding: 35px;
+    margin-top: 25px;
+    background: #fffdf5;
+}
+#certificate h1 {
+    color: #17476b;
+    font-size: 34px;
+}
+.student-name {
+    font-size: 28px;
+    font-weight: bold;
+    color: #9a762b;
+    margin: 25px;
+}
+@media print {
+    body { background: white; padding: 0; }
+    .container { display: none; }
+    #certificate {
+        display: block !important;
+        margin: 20px;
+        min-height: 450px;
+    }
+    button { display: none; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>🎓 Başarı Belgesi</h1>
+    <p>Kars Kültürel Miras Atlası dijital gezisini tamamlayan öğrenciler için hazırlanmıştır.</p>
+    <p id="status"></p>
+    <button onclick="checkCertificate()">Belge Durumumu Kontrol Et</button>
+    <button onclick="window.print()" id="printButton" style="display:none">
+        PDF Olarak Kaydet
+    </button>
+    <p><a href="index.html">Ana Sayfaya Dön</a></p>
+</div>
+
+<div id="certificate">
+    <h1>BAŞARI BELGESİ</h1>
+    <h2>KARS KÜLTÜREL MİRAS ATLASI</h2>
+    <p>Bu belge,</p>
+    <div class="student-name" id="studentName"></div>
+    <p id="school"></p>
+    <p id="studentClass"></p>
+    <p>
+        Kars'ın kültürel ve doğal mirasını tanımaya yönelik
+        dijital geziyi ve 24 soruluk etkinliği başarıyla tamamlamıştır.
+    </p>
+    <br>
+    <p id="date"></p>
+    <br><br>
+    <p>Proje Sorumlusu</p>
+    <strong>Okul Yönetimi</strong>
+</div>
+
+<script src="puan.js"></script>
+<script>
+function checkCertificate() {
+    let student = JSON.parse(
+        localStorage.getItem("karsStudent") || "null"
+    );
+
+    let status = document.getElementById("status");
+
+    if (!student) {
+        status.innerText = "Önce öğrenci girişi yapmalısın.";
+        return;
+    }
+
+    let progress = getKarsTourProgress();
+
+    if (!progress.complete) {
+        status.innerText =
+            "Henüz tamamlanmadı. " +
+            progress.completed + " / " + progress.total +
+            " soru cevaplandı.";
+        return;
+    }
+
+    document.getElementById("studentName").innerText = student.name;
+    document.getElementById("school").innerText = student.school;
+    document.getElementById("studentClass").innerText = student.studentClass;
+    document.getElementById("date").innerText =
+        "Tarih: " + new Date().toLocaleDateString("tr-TR");
+
+    document.getElementById("certificate").style.display = "block";
+    document.getElementById("printButton").style.display = "inline-block";
+
+    status.innerText = "Tebrikler! Belgen hazır.";
+}
+</script>
+
+</body>
+</html>
