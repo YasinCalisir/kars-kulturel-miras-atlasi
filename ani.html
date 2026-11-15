@@ -174,7 +174,7 @@ target="_blank" rel="noopener">Ani Gezi Haritası (PDF) →</a>
 
 <script>
 let score=0;
-let answered={1:false,2:false};
+let answered = getKarsAnsweredQuestions("ani", 2);
 
 function speak(text){
  if(!('speechSynthesis' in window)){
@@ -191,6 +191,7 @@ function speak(text){
 function answer(question,correct){
  if(answered[question]) return;
  answered[question]=true;
+ markKarsQuestionAnswered("ani", question);
 
  if(correct) score += 10;
 if(correct) awardKarsPoint("ani", question);
