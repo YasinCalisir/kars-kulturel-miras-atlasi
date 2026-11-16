@@ -168,7 +168,13 @@ yapılarını ve kültürel önemini inceleyebilirsin.
 <script src="puan.js"></script>
 <script>
 let score=0;
-let answered=getKarsAnsweredQuestions("ani",2);
+let student = JSON.parse(localStorage.getItem("karsStudent") || "null");
+let oldAnswers = JSON.parse(localStorage.getItem("karsAnswers") || "{}");
+
+let answered = {
+  1: !!(student && oldAnswers[student.name + "_ani_1"]),
+  2: !!(student && oldAnswers[student.name + "_ani_2"])
+};
 
 function speak(text){
  if(!('speechSynthesis' in window)){
