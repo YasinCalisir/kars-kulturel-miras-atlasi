@@ -23,7 +23,11 @@ h2{color:#164c65;margin-bottom:15px}
 button,.btn{display:inline-block;border:0;background:#e8a932;color:#263445;padding:11px 17px;border-radius:8px;font-weight:bold;cursor:pointer;text-decoration:none;margin-top:13px}
 .quiz{margin-top:35px}
 .quiz button{display:block;width:100%;text-align:left;background:#edf3f5;margin-top:10px}
-#result{font-weight:bold;margin-top:15px}
+.quiz button:disabled{cursor:default;opacity:.75}
+.feedback{font-weight:bold;margin-top:10px;min-height:28px}
+.feedback.correct{color:#16833b}
+.feedback.incorrect{color:#d12f2f}
+#result{font-weight:bold;margin-top:20px;color:#164c65}
 .links a{display:inline-block;margin:8px 10px 0 0;color:#147c8b}
 footer{background:#123b55;color:white;text-align:center;padding:25px}
 </style>
@@ -71,9 +75,7 @@ Ani'nin görkemli sur kapılarından biridir.
 Kapının üzerinde bulunan aslan kabartması
 Ani'nin tanınan tarihî sembollerindendir.
 </p>
-<button onclick="speak('Aslanlı Kapı, Ani Antik Kenti’nin
-önemli girişlerinden biridir. Üzerindeki aslan
-kabartması ile tanınır.')">
+<button onclick="speak('Aslanlı Kapı, Ani Antik Kenti’nin önemli girişlerinden biridir. Üzerindeki aslan kabartması ile tanınır.')">
 🔊 Sesli Dinle
 </button>
 </article>
@@ -87,9 +89,7 @@ Mimar Trdat tarafından tasarlanmış,
 989 yılında yapımına başlanmış ve
 1001 yılında tamamlanmıştır.
 </p>
-<button onclick="speak('Ani Katedrali, Mimar Trdat tarafından
-tasarlanmıştır. Yapımına 989 yılında başlanmış
-ve 1001 yılında tamamlanmıştır.')">
+<button onclick="speak('Ani Katedrali, Mimar Trdat tarafından tasarlanmıştır. Yapımına 989 yılında başlanmış ve 1001 yılında tamamlanmıştır.')">
 🔊 Sesli Dinle
 </button>
 </article>
@@ -102,9 +102,7 @@ ve 1001 yılında tamamlanmıştır.')">
 bu yapı, Ani'deki önemli Selçuklu dönemi
 eserlerinden biridir.
 </p>
-<button onclick="speak('Ebu'l Menuçehr Camii, 1072 yılında
-inşa edilmiştir. Ani Antik Kenti’nin
-önemli Selçuklu dönemi eserlerindendir.')">
+<button onclick="speak('Ebu’l Menuçehr Camii, 1072 yılında inşa edilmiştir. Ani Antik Kenti’nin önemli Selçuklu dönemi eserlerindendir.')">
 🔊 Sesli Dinle
 </button>
 </article>
@@ -117,9 +115,7 @@ inşa edilmiştir. Ani Antik Kenti’nin
 İçerisindeki freskler ve taş süslemeler
 yapının önemli özelliklerindendir.
 </p>
-<button onclick="speak('Tigran Honents Kilisesi 1215 yılında
-inşa edilmiştir. Freskleri ve taş süslemeleri
-ile tanınmaktadır.')">
+<button onclick="speak('Tigran Honents Kilisesi 1215 yılında inşa edilmiştir. Freskleri ve taş süslemeleri ile tanınmaktadır.')">
 🔊 Sesli Dinle
 </button>
 </article>
@@ -133,36 +129,33 @@ Resmî kültür kaynaklarından Ani'nin tarihini,
 yapılarını ve kültürel önemini inceleyebilirsin.
 </p>
 <div class="links">
-<a href="https://www.kulturportali.gov.tr/portal/aniarkeolojikalani"
-target="_blank" rel="noopener">Kültür Portalı →</a>
-
-<a href="https://whc.unesco.org/en/list/1518"
-target="_blank" rel="noopener">UNESCO Ani Sayfası →</a>
-
-<a href="https://muze.gov.tr/muze-detay?distId=MRK&sectionId=ANI01"
-target="_blank" rel="noopener">Ani Müze Bilgileri →</a>
-
-<a href="https://www.serka.gov.tr/assets/upload/dosyalar/kars-turizm-kesif-rehberi.pdf"
-target="_blank" rel="noopener">Ani Gezi Haritası (PDF) →</a>
+<a href="https://www.kulturportali.gov.tr/portal/aniarkeolojikalani" target="_blank" rel="noopener">Kültür Portalı →</a>
+<a href="https://whc.unesco.org/en/list/1518" target="_blank" rel="noopener">UNESCO Ani Sayfası →</a>
+<a href="https://muze.gov.tr/muze-detay?distId=MRK&sectionId=ANI01" target="_blank" rel="noopener">Ani Müze Bilgileri →</a>
+<a href="https://www.serka.gov.tr/assets/upload/dosyalar/kars-turizm-kesif-rehberi.pdf" target="_blank" rel="noopener">Ani Gezi Haritası (PDF) →</a>
 </div>
 </section>
 
 <section class="quiz">
 <h2>🧠 Ani Bilgi Yarışması</h2>
 
+<div class="question">
 <p><strong>1. Ani Antik Kenti hangi yıl UNESCO Dünya Mirası Listesi'ne alınmıştır?</strong></p>
+<button onclick="answer(1,false,this)">A) 2001</button>
+<button onclick="answer(1,true,this)">B) 2016</button>
+<button onclick="answer(1,false,this)">C) 2020</button>
+<p class="feedback" id="feedback-1"></p>
+</div>
 
-<button onclick="answer(1,false)">A) 2001</button>
-<button onclick="answer(1,true)">B) 2016</button>
-<button onclick="answer(1,false)">C) 2020</button>
+<div class="question" style="margin-top:25px">
+<p><strong>2. Ani hangi tarihî ticaret yolu üzerinde gelişmiştir?</strong></p>
+<button onclick="answer(2,true,this)">A) İpek Yolu</button>
+<button onclick="answer(2,false,this)">B) Baharat Yolu</button>
+<button onclick="answer(2,false,this)">C) Kral Yolu</button>
+<p class="feedback" id="feedback-2"></p>
+</div>
 
-<p style="margin-top:25px"><strong>2. Ani hangi tarihî ticaret yolu üzerinde gelişmiştir?</strong></p>
-
-<button onclick="answer(2,true)">A) İpek Yolu</button>
-<button onclick="answer(2,false)">B) Baharat Yolu</button>
-<button onclick="answer(2,false)">C) Kral Yolu</button>
-
-<div id="result">Henüz cevap verilmedi.</div>
+<div id="result">Yarışmaya başlayabilirsin. Her doğru cevap 10 puan!</div>
 </section>
 
 </main>
@@ -171,15 +164,16 @@ target="_blank" rel="noopener">Ani Gezi Haritası (PDF) →</a>
 <h3>Şehrimizi Tanıyalım</h3>
 <p>Kars'ın kültürel mirasını birlikte keşfediyoruz.</p>
 </footer>
+
 <script src="puan.js"></script>
 <script>
 let score=0;
-let answered = getKarsAnsweredQuestions("ani", 2);
+let answered=getKarsAnsweredQuestions("ani",2);
 
 function speak(text){
  if(!('speechSynthesis' in window)){
- alert('Tarayıcınız sesli anlatımı desteklemiyor.');
- return;
+  alert('Tarayıcınız sesli anlatımı desteklemiyor.');
+  return;
  }
  speechSynthesis.cancel();
  const msg=new SpeechSynthesisUtterance(text);
@@ -188,23 +182,48 @@ function speak(text){
  speechSynthesis.speak(msg);
 }
 
-function answer(question,correct){
- if(answered[question]) return;
- answered[question]=true;
- markKarsQuestionAnswered("ani", question);
+function answer(question,correct,button){
+ const feedback=document.getElementById('feedback-'+question);
 
- if(correct) score += 10;
-if(correct) awardKarsPoint("ani", question);
- const result=document.getElementById('result');
- if(Object.keys(answered).every(k=>answered[k])){
- result.innerHTML='🎉 Yarışma tamamlandı! Puanın: '+score+'/20';
- result.style.color=score===20?'green':'#b36a16';
+ if(answered[question]){
+  feedback.textContent='Bu soruyu daha önce doğru cevapladın.';
+  feedback.className='feedback correct';
+  return;
+ }
+
+ if(correct){
+  answered[question]=true;
+  score+=10;
+  awardKarsPoint("ani",question);
+  markKarsQuestionAnswered("ani",question);
+
+  feedback.textContent='✓ Doğru cevap! Harika, 10 puan kazandın. 👏';
+  feedback.className='feedback correct';
+
+  const buttons=feedback.parentElement.querySelectorAll('button');
+  buttons.forEach(btn=>btn.disabled=true);
  }else{
- result.innerHTML=correct?'Doğru cevap! 👏':'Bu cevap doğru değil. Bir sonraki soruya geçelim.';
- result.style.color=correct?'green':'#b36a16';
+  feedback.textContent='✗ Yanlış cevap. Tekrar dene!';
+  feedback.className='feedback incorrect';
+ }
+
+ if(Object.values(answered).every(value=>value)){
+  document.getElementById('result').textContent=
+  '🎉 Yarışmayı tamamladın! Bu sayfada kazandığın puan: '+score+'/20';
  }
 }
 
+// Daha önce doğru cevaplanmış soruları göster
+for(let i=1;i<=2;i++){
+ if(answered[i]){
+  const feedback=document.getElementById('feedback-'+i);
+  feedback.textContent='✓ Bu soruyu daha önce doğru cevapladın.';
+  feedback.className='feedback correct';
+  const buttons=feedback.parentElement.querySelectorAll('button');
+  buttons.forEach(btn=>btn.disabled=true);
+ }
+}
 </script>
+
 </body>
 </html>
