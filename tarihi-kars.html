@@ -294,15 +294,16 @@ function answer(question, correct) {
     alert("Önce Öğrenci Girişi yapmalısın!");
     return;
   }
-  answered[question] = true;
-  markKarsQuestionAnswered("tarihi-mimari", question);
-
+  
   const result = document.getElementById("result");
   const scoreDisplay = document.getElementById("score");
 
   if (correct) {
     const awarded = awardKarsPoint("tarihi-mimari", question);
-
+    if (awarded) {
+    answered[question] = true;
+    markKarsQuestionAnswered("tarihi-mimari", question);
+}
     if (awarded) {
       score += 10;
       result.textContent = "Doğru cevap! 10 puan kazandın. 👏";
