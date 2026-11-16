@@ -284,7 +284,11 @@ let score = 0;
 let answered = getKarsAnsweredQuestions("tarihi-mimari", 5);
 
 function answer(question, correct) {
-  if (answered[question]) return;
+  if (answered[question]) {
+    document.getElementById("result").textContent =
+        "Bu soruyu daha önce cevapladın. Diğer soruya geçebilirsin.";
+    return;
+}
 
   if (!localStorage.getItem("karsStudent")) {
     alert("Önce Öğrenci Girişi yapmalısın!");
