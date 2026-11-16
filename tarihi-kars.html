@@ -279,37 +279,42 @@ function answer(correct){
 
 <script src="puan.js"></script>
 
+
 <script>
 let score = 0;
 let answered = getKarsAnsweredQuestions("tarihi-mimari", 5);
 
 function answer(question, correct) {
-  if (answered[question]) {
-    document.getElementById("result").textContent =
-        "Bu soruyu daha önce cevapladın. Diğer soruya geçebilirsin.";
-    return;
-}
 
   if (!localStorage.getItem("karsStudent")) {
     alert("Önce Öğrenci Girişi yapmalısın!");
     return;
   }
-  
+
   const result = document.getElementById("result");
   const scoreDisplay = document.getElementById("score");
 
+  if (answered[question]) {
+    result.textContent =
+      "Bu soruyu daha önce cevapladın. Diğer soruya geçebilirsin.";
+    return;
+  }
+
   if (correct) {
+
     const awarded = awardKarsPoint("tarihi-mimari", question);
+
     if (awarded) {
-    answered[question] = true;
-    markKarsQuestionAnswered("tarihi-mimari", question);
-}
-    if (awarded) {
+      markKarsQuestionAnswered("tarihi-mimari", question);
+      answered[question] = true;
       score += 10;
+
       result.textContent = "Doğru cevap! 10 puan kazandın. 👏";
     } else {
+      answered[question] = true;
       result.textContent = "Bu sorudan daha önce puan kazanmışsın.";
     }
+
   } else {
     result.textContent = "Yanlış cevap. Bir sonraki soruya geçelim.";
   }
@@ -323,5 +328,3 @@ function answer(question, correct) {
 }
 </script>
 
-</body>
-</html>
