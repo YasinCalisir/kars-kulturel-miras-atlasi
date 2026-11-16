@@ -5,57 +5,205 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tarihî Kars | Şehrimizi Tanıyalım</title>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#f3f6fa;color:#263445;line-height:1.7}
-header{background:#123b55;color:white;padding:18px 6%;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
-header a{color:white;text-decoration:none}
-.hero{background:linear-gradient(130deg,#123b55,#397d85);color:white;text-align:center;padding:65px 20px}
-.hero h1{font-size:clamp(32px,5vw,48px)}
-.hero p{max-width:700px;margin:12px auto}
-.container{max-width:1050px;margin:auto;padding:40px 20px}
-h2{color:#164c65;margin-bottom:12px}
-.intro{background:white;padding:25px;border-radius:14px;margin-bottom:30px}
-.stops{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
-.card{background:white;border-radius:14px;padding:23px;box-shadow:0 4px 14px #0000000c}
-.picture{height:125px;border-radius:10px;background:linear-gradient(135deg,#dce8e8,#a9c6c5);display:flex;align-items:center;justify-content:center;font-size:65px;margin-bottom:15px}
-.card h3{color:#164c65;margin-bottom:8px}
-.card p{font-size:14px}
-button,.btn{border:0;background:#e8a932;color:#263445;padding:11px 17px;border-radius:8px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block;margin-top:13px}
-.card a{color:#147c8b;font-weight:bold}
-.quiz{background:white;border-radius:14px;padding:25px;margin-top:35px}
-.quiz button{display:block;width:100%;text-align:left;background:#edf3f5;margin-top:10px}
-#result{margin-top:15px;font-weight:bold}
-footer{background:#123b55;color:white;text-align:center;padding:25px}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f6fa;
+    color: #263445;
+    line-height: 1.7;
+}
+
+header {
+    background: #123b55;
+    color: white;
+    padding: 18px 6%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+}
+
+.hero {
+    background: linear-gradient(130deg, #123b55, #397d85);
+    color: white;
+    text-align: center;
+    padding: 65px 20px;
+}
+
+.hero h1 {
+    font-size: clamp(32px, 5vw, 48px);
+}
+
+.hero p {
+    max-width: 700px;
+    margin: 12px auto;
+}
+
+.container {
+    max-width: 1050px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+h2 {
+    color: #164c65;
+    margin-bottom: 12px;
+}
+
+.intro {
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+    margin-bottom: 30px;
+}
+
+.stops {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 14px;
+    padding: 23px;
+    box-shadow: 0 4px 14px #0000000c;
+}
+
+.picture {
+    height: 125px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #dce8e8, #a9c6c5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 65px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    color: #164c65;
+    margin-bottom: 8px;
+}
+
+.card p {
+    font-size: 14px;
+}
+
+button, .btn {
+    border: 0;
+    background: #e8a932;
+    color: #263445;
+    padding: 11px 17px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 13px;
+}
+
+.card a {
+    color: #147c8b;
+    font-weight: bold;
+}
+
+.quiz {
+    background: white;
+    border-radius: 14px;
+    padding: 25px;
+    margin-top: 35px;
+}
+
+.quiz .card {
+    margin-top: 20px;
+    box-shadow: none;
+    border: 1px solid #e5edf1;
+}
+
+.quiz button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: #17618c;
+    color: white;
+    margin-top: 10px;
+    padding: 12px 17px;
+    border-radius: 8px;
+}
+
+.quiz button:hover {
+    background: #124b70;
+}
+
+.feedback {
+    font-weight: bold;
+    margin-top: 12px;
+    min-height: 25px;
+    font-size: 15px;
+}
+
+.feedback.correct {
+    color: green;
+}
+
+.feedback.incorrect {
+    color: red;
+}
+
+#result {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+footer {
+    background: #123b55;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
 </style>
 </head>
+
 <body>
 
 <header>
-<strong>🏛️ ŞEHRİMİZİ TANIYALIM</strong>
-<a href="index.html">← Ana Sayfaya Dön</a>
+    <strong>🏛️ ŞEHRİMİZİ TANIYALIM</strong>
+    <a href="index.html">← Ana Sayfaya Dön</a>
 </header>
 
 <section class="hero">
-<h1>🏰 TARİHÎ KARS</h1>
-<p>Binlerce yıllık geçmişiyle Kars'ı keşfetmeye hazır mısın?</p>
-<p>Birlikte tarihî bir yolculuğa çıkıyoruz!</p>
+    <h1>🏰 TARİHÎ KARS</h1>
+    <p>Binlerce yıllık geçmişiyle Kars'ı keşfetmeye hazır mısın?</p>
+    <p>Birlikte tarihî bir yolculuğa çıkıyoruz!</p>
 </section>
 
 <main class="container">
 
 <section class="intro">
-<h2>Sevgili Öğrenciler!</h2>
-<p>
-Kars, geçmişten günümüze birçok medeniyete ev sahipliği
-yapmış önemli bir serhat şehridir. Kaleleri, camileri,
-köprüleri ve tarihî yapılarıyla büyük bir kültürel
-zenginliğe sahiptir.
-</p>
-<p>
-Bu dijital gezide Kars'ın tarihî güzelliklerini
-yaşadığın yerden keşfedebilirsin.
-</p>
+    <h2>Sevgili Öğrenciler!</h2>
+    <p>
+        Kars, geçmişten günümüze birçok medeniyete ev sahipliği
+        yapmış önemli bir serhat şehridir. Kaleleri, camileri,
+        köprüleri ve tarihî yapılarıyla büyük bir kültürel
+        zenginliğe sahiptir.
+    </p>
+    <p>
+        Bu dijital gezide Kars'ın tarihî güzelliklerini
+        yaşadığın yerden keşfedebilirsin.
+    </p>
 </section>
 
 <h2>📍 Tarihî Gezi Duraklarımız</h2>
@@ -63,112 +211,110 @@ yaşadığın yerden keşfedebilirsin.
 <section class="stops">
 
 <article class="card">
-<img src="https://kulturportali.gov.tr/contents/images/Kars-UyumAjans%20%281%29%20LOGOLU.jpg?format=jpg&quality=50&width=1200"
-alt="Kars Kalesi"
-style="width:100%;height:180px;object-fit:cover;border-radius:10px;">
-<h3>1. Kars Kalesi</h3>
-<p>
-Kars'ın simgelerinden biridir. Kaynaklarda kalenin
-1152 yılında Sultan Melik İzzettin'in emriyle
-yaptırıldığı belirtilir. 1386 yılında Timur tarafından
-yıkılmış, 1579 yılında yeniden yaptırılmıştır.
-</p>
-<button onclick="speak('Kars Kalesi, şehrimizin önemli tarihî
-eserlerinden biridir. 1152 yılında yaptırıldığı
-belirtilmektedir. 1579 yılında yeniden inşa edilmiştir.')">
-🔊 Sesli Dinle
-</button>
+    <img src="https://kulturportali.gov.tr/contents/images/Kars-UyumAjans%20%281%29%20LOGOLU.jpg?format=jpg&quality=50&width=1200"
+    alt="Kars Kalesi"
+    style="width:100%;height:180px;object-fit:cover;border-radius:10px;">
+
+    <h3>1. Kars Kalesi</h3>
+    <p>
+        Kars'ın simgelerinden biridir. Kaynaklarda kalenin
+        1152 yılında Sultan Melik İzzettin'in emriyle
+        yaptırıldığı belirtilir. 1386 yılında Timur tarafından
+        yıkılmış, 1579 yılında yeniden yaptırılmıştır.
+    </p>
+
+    <button onclick="speak('Kars Kalesi, şehrimizin önemli tarihî eserlerinden biridir. 1152 yılında yaptırıldığı belirtilmektedir. 1579 yılında yeniden inşa edilmiştir.')">
+        🔊 Sesli Dinle
+    </button>
 </article>
 
 <article class="card">
-<img src="https://kars.ktb.gov.tr/Resim/215145%2Cevliya-camiijpg.png?0="
-alt="Evliya Camii"
-style="width:100%;height:180px;object-fit:cover;border-radius:10px;">
-<h3>2. Evliya Camii</h3>
-<p>
-1579 yılında Lala Mustafa Paşa tarafından
-yaptırılan cami, Ebul Hasan Harakani'nin
-türbesinin bulunduğu külliye içerisinde yer alır.
-</p>
-<button onclick="speak('Evliya Camii, 1579 yılında Lala Mustafa Paşa
-tarafından yaptırılmıştır. Ebul Hasan Harakani
-Türbesi bu külliyenin içerisindedir.')">
-🔊 Sesli Dinle
-</button>
+    <img src="https://kars.ktb.gov.tr/Resim/215145%2Cevliya-camiijpg.png?0="
+    alt="Evliya Camii"
+    style="width:100%;height:180px;object-fit:cover;border-radius:10px;">
+
+    <h3>2. Evliya Camii</h3>
+    <p>
+        1579 yılında Lala Mustafa Paşa tarafından
+        yaptırılan cami, Ebul Hasan Harakani'nin
+        türbesinin bulunduğu külliye içerisinde yer alır.
+    </p>
+
+    <button onclick="speak('Evliya Camii, 1579 yılında Lala Mustafa Paşa tarafından yaptırılmıştır. Ebul Hasan Harakani Türbesi bu külliyenin içerisindedir.')">
+        🔊 Sesli Dinle
+    </button>
 </article>
 
 <article class="card">
-<img src="https://kulturportali.gov.tr/repoKulturPortali/small/05032013/fa807205-2245-4a94-a4fe-c3c83871a472.png?format=jpg&quality=50"
-alt="Kars Taş Köprü"
-style="width:100%;height:180px;object-fit:cover;border-radius:10px;">
-<h3>3. Taş Köprü</h3>
-<p>
-Kars Çayı üzerinde bulunan tarihî köprü,
-1579 yılında III. Murat'ın emriyle yaptırılmıştır.
-Daha sonra 1725 yılında yeniden inşa edilmiştir.
-</p>
-<button onclick="speak('Taş Köprü, Kars Çayı üzerinde yer alır.
-1579 yılında yaptırılmış ve 1725 yılında
-yeniden inşa edilmiştir.')">
-🔊 Sesli Dinle
-</button>
+    <img src="https://kulturportali.gov.tr/repoKulturPortali/small/05032013/fa807205-2245-4a94-a4fe-c3c83871a472.png?format=jpg&quality=50"
+    alt="Kars Taş Köprü"
+    style="width:100%;height:180px;object-fit:cover;border-radius:10px;">
+
+    <h3>3. Taş Köprü</h3>
+    <p>
+        Kars Çayı üzerinde bulunan tarihî köprü,
+        1579 yılında III. Murat'ın emriyle yaptırılmıştır.
+        Daha sonra 1725 yılında yeniden inşa edilmiştir.
+    </p>
+
+    <button onclick="speak('Taş Köprü, Kars Çayı üzerinde yer alır. 1579 yılında yaptırılmış ve 1725 yılında yeniden inşa edilmiştir.')">
+        🔊 Sesli Dinle
+    </button>
 </article>
 
 <article class="card">
-<div class="picture">🕌</div>
-<h3>4. Ebul Hasan Harakani Türbesi</h3>
-<p>
-963-1033 yılları arasında yaşadığı belirtilen
-Ebul Hasan Harakani, Kars'ın önemli manevi
-şahsiyetlerindendir. Türbesi Evliya Camii
-külliyesinde bulunmaktadır.
-</p>
-<button onclick="speak('Ebul Hasan Harakani, 963 ile 1033 yılları
-arasında yaşamıştır. Türbesi Kars merkezde
-Evliya Camii külliyesi içerisindedir.')">
-🔊 Sesli Dinle
-</button>
+    <div class="picture">🕌</div>
+    <h3>4. Ebul Hasan Harakani Türbesi</h3>
+    <p>
+        963-1033 yılları arasında yaşadığı belirtilen
+        Ebul Hasan Harakani, Kars'ın önemli manevi
+        şahsiyetlerindendir. Türbesi Evliya Camii
+        külliyesinde bulunmaktadır.
+    </p>
+
+    <button onclick="speak('Ebul Hasan Harakani, 963 ile 1033 yılları arasında yaşamıştır. Türbesi Kars merkezde Evliya Camii külliyesi içerisindedir.')">
+        🔊 Sesli Dinle
+    </button>
 </article>
 
 <article class="card">
-<div class="picture">🏡</div>
-<h3>5. Namık Kemal Kültür Evi</h3>
-<p>
-Vatan şairi Namık Kemal'in 1853-1854 yıllarında
-çocukluğunu geçirdiği evdir. Günümüzde
-sergi alanı ve Âşıklar Evi olarak hizmet verir.
-</p>
-<button onclick="speak('Namık Kemal Kültür Evi, vatan şairi
-Namık Kemal’in çocukluğunu geçirdiği tarihî
-evdir. Günümüzde kültür evi olarak hizmet verir.')">
-🔊 Sesli Dinle
-</button>
+    <div class="picture">🏡</div>
+    <h3>5. Namık Kemal Kültür Evi</h3>
+    <p>
+        Vatan şairi Namık Kemal'in 1853-1854 yıllarında
+        çocukluğunu geçirdiği evdir. Günümüzde
+        sergi alanı ve Âşıklar Evi olarak hizmet verir.
+    </p>
+
+    <button onclick="speak('Namık Kemal Kültür Evi, vatan şairi Namık Kemal’in çocukluğunu geçirdiği tarihî evdir. Günümüzde kültür evi olarak hizmet verir.')">
+        🔊 Sesli Dinle
+    </button>
 </article>
 
 <article class="card">
-<div class="picture">🏛️</div>
-<h3>6. Kümbet Camii</h3>
-<p>
-On İki Havariler Kilisesi olarak da bilinen
-tarihî yapı, 10. yüzyılda Bagratlılar döneminde
-inşa edilmiştir. Günümüzde cami olarak kullanılır.
-</p>
-<button onclick="speak('Kümbet Camii, geçmişte On İki Havariler
-Kilisesi olarak bilinirdi. Onuncu yüzyılda
-inşa edilmiştir.')">
-🔊 Sesli Dinle
-</button>
+    <div class="picture">🏛️</div>
+    <h3>6. Kümbet Camii</h3>
+    <p>
+        On İki Havariler Kilisesi olarak da bilinen
+        tarihî yapı, 10. yüzyılda Bagratlılar döneminde
+        inşa edilmiştir. Günümüzde cami olarak kullanılır.
+    </p>
+
+    <button onclick="speak('Kümbet Camii, geçmişte On İki Havariler Kilisesi olarak bilinirdi. Onuncu yüzyılda inşa edilmiştir.')">
+        🔊 Sesli Dinle
+    </button>
 </article>
 
 </section>
 
 <section class="intro" style="margin-top:35px">
-<h2>🗺️ Haritada Tarihî Kars'ı Gez</h2>
-<p>Bu tarihî noktaları mevcut dijital Kars haritamızda incele.</p>
-<a class="btn" href="kars_atlas_haritasi.html">Haritayı Aç →</a>
+    <h2>🗺️ Haritada Tarihî Kars'ı Gez</h2>
+    <p>Bu tarihî noktaları mevcut dijital Kars haritamızda incele.</p>
+    <a class="btn" href="kars_atlas_haritasi.html">Haritayı Aç →</a>
 </section>
 
 <section class="container" id="sanal-tur">
+
     <div class="section-title">
         <h2>🌐 Kars'ı 360 Derece Keşfet</h2>
         <p>Bulunduğun yerden Kars'ın güzelliklerini keşfet!</p>
@@ -182,7 +328,7 @@ inşa edilmiştir.')">
             <p>Kars Kalesi'nin panoramik görüntüsünü incele.</p>
             <a href="https://www.360cities.net/image/kars-kalesi-turkey-kars"
                target="_blank" rel="noopener">
-               Sanal Geziye Başla →
+                Sanal Geziye Başla →
             </a>
         </div>
 
@@ -192,139 +338,196 @@ inşa edilmiştir.')">
             <p>Kültür ve Turizm Bakanlığının panoramik Kars turunu keşfet.</p>
             <a href="https://www.ktb.gov.tr/TR-96664/kars-sehir-turu-360-derece-panoramik-goruntuler.html"
                target="_blank" rel="noopener">
-               Şehri Keşfet →
+                Şehri Keşfet →
             </a>
         </div>
 
     </div>
 </section>
 
-
 <section class="quiz">
-<h2>🧠 Tarihî Kars Bilgi Yarışması</h2>
-<p>Doğru cevapları bul, puanları topla!</p>
 
-<div class="card">
-<h3>1. Kars Kalesi hangi yılda yeniden yaptırılmıştır?</h3>
-<button onclick="answer(1,false)">A) 1453</button>
-<button onclick="answer(1,true)">B) 1579</button>
-<button onclick="answer(1,false)">C) 1923</button>
-</div>
+    <h2>🧠 Tarihî Kars Bilgi Yarışması</h2>
+    <p>Doğru cevapları bul, puanları topla!</p>
 
-<div class="card">
-<h3>2. Evliya Camii'ni kim yaptırmıştır?</h3>
-<button onclick="answer(2,false)">A) Sultan Melik İzzettin</button>
-<button onclick="answer(2,true)">B) Lala Mustafa Paşa</button>
-<button onclick="answer(2,false)">C) Timur</button>
-</div>
+    <div class="card">
+        <h3>1. Kars Kalesi hangi yılda yeniden yaptırılmıştır?</h3>
 
-<div class="card">
-<h3>3. Taş Köprü hangi akarsu üzerinde bulunur?</h3>
-<button onclick="answer(3,true)">A) Kars Çayı</button>
-<button onclick="answer(3,false)">B) Aras Nehri</button>
-<button onclick="answer(3,false)">C) Arpaçay</button>
-</div>
+        <button onclick="answer(1,false)">A) 1453</button>
+        <button onclick="answer(1,true)">B) 1579</button>
+        <button onclick="answer(1,false)">C) 1923</button>
 
-<div class="card">
-<h3>4. Kümbet Camii geçmişte hangi adla bilinirdi?</h3>
-<button onclick="answer(4,false)">A) Ulu Cami</button>
-<button onclick="answer(4,true)">B) On İki Havariler Kilisesi</button>
-<button onclick="answer(4,false)">C) Evliya Camii</button>
-</div>
+        <p class="feedback" id="feedback-1"></p>
+    </div>
 
-<div class="card">
-<h3>5. Namık Kemal Kültür Evi kimin çocukluğunu geçirdiği evdir?</h3>
-<button onclick="answer(5,true)">A) Namık Kemal</button>
-<button onclick="answer(5,false)">B) Ebul Hasan Harakani</button>
-<button onclick="answer(5,false)">C) Lala Mustafa Paşa</button>
-</div>
+    <div class="card">
+        <h3>2. Evliya Camii'ni kim yaptırmıştır?</h3>
 
-<div id="result">Yarışmaya hazır mısın?</div>
-<p>🏆 Puanın: <span id="score">0</span> / 50</p>
+        <button onclick="answer(2,false)">A) Sultan Melik İzzettin</button>
+        <button onclick="answer(2,true)">B) Lala Mustafa Paşa</button>
+        <button onclick="answer(2,false)">C) Timur</button>
+
+        <p class="feedback" id="feedback-2"></p>
+    </div>
+
+    <div class="card">
+        <h3>3. Taş Köprü hangi akarsu üzerinde bulunur?</h3>
+
+        <button onclick="answer(3,true)">A) Kars Çayı</button>
+        <button onclick="answer(3,false)">B) Aras Nehri</button>
+        <button onclick="answer(3,false)">C) Arpaçay</button>
+
+        <p class="feedback" id="feedback-3"></p>
+    </div>
+
+    <div class="card">
+        <h3>4. Kümbet Camii geçmişte hangi adla bilinirdi?</h3>
+
+        <button onclick="answer(4,false)">A) Ulu Cami</button>
+        <button onclick="answer(4,true)">B) On İki Havariler Kilisesi</button>
+        <button onclick="answer(4,false)">C) Evliya Camii</button>
+
+        <p class="feedback" id="feedback-4"></p>
+    </div>
+
+    <div class="card">
+        <h3>5. Namık Kemal Kültür Evi kimin çocukluğunu geçirdiği evdir?</h3>
+
+        <button onclick="answer(5,true)">A) Namık Kemal</button>
+        <button onclick="answer(5,false)">B) Ebul Hasan Harakani</button>
+        <button onclick="answer(5,false)">C) Lala Mustafa Paşa</button>
+
+        <p class="feedback" id="feedback-5"></p>
+    </div>
+
+    <div id="result">Yarışmaya hazır mısın?</div>
+
+    <p>🏆 Puanın: <span id="score">0</span> / 50</p>
+
 </section>
-
 
 </main>
 
 <footer>
-<h3>Şehrimizi Tanıyalım</h3>
-<p>Kars'ı birlikte keşfediyoruz!</p>
-<p>Geleceğe kültürel mirasımızı taşıyoruz.</p>
+    <h3>Şehrimizi Tanıyalım</h3>
+    <p>Kars'ı birlikte keşfediyoruz!</p>
+    <p>Geleceğe kültürel mirasımızı taşıyoruz.</p>
 </footer>
-
-<script>
-function speak(text){
- if(!('speechSynthesis' in window)){
- alert('Tarayıcınız sesli anlatımı desteklemiyor.');
- return;
- }
- speechSynthesis.cancel();
- const msg=new SpeechSynthesisUtterance(text);
- msg.lang='tr-TR';
- msg.rate=0.9;
- speechSynthesis.speak(msg);
-}
-
-function answer(correct){
- const result=document.getElementById('result');
- if(correct){
- result.innerHTML='🎉 Tebrikler! Doğru cevap.';
- result.style.color='green';
- }else{
- result.innerHTML='Tekrar dene! Biraz daha düşün.';
- result.style.color='red';
- }
-}
-</script>
 
 <script src="puan.js"></script>
 
-
 <script>
+
+function speak(text) {
+
+    if (!('speechSynthesis' in window)) {
+        alert('Tarayıcınız sesli anlatımı desteklemiyor.');
+        return;
+    }
+
+    speechSynthesis.cancel();
+
+    const msg = new SpeechSynthesisUtterance(text);
+    msg.lang = 'tr-TR';
+    msg.rate = 0.9;
+
+    speechSynthesis.speak(msg);
+}
+
+
+// PUAN VE SORU TAKİP SİSTEMİ
+
 let score = 0;
+
 let answered = getKarsAnsweredQuestions("tarihi-mimari", 5);
+
+
+// Daha önce tamamlanmış soruları göster
+
+for (let i = 1; i <= 5; i++) {
+
+    if (answered[i]) {
+
+        const feedback = document.getElementById("feedback-" + i);
+
+        feedback.className = "feedback correct";
+        feedback.textContent = "✅ Bu soruyu daha önce tamamladın.";
+    }
+}
+
+
+// CEVAP KONTROL FONKSİYONU
 
 function answer(question, correct) {
 
-  if (!localStorage.getItem("karsStudent")) {
-    alert("Önce Öğrenci Girişi yapmalısın!");
-    return;
-  }
-
-  const result = document.getElementById("result");
-  const scoreDisplay = document.getElementById("score");
-
-  if (answered[question]) {
-    result.textContent =
-      "Bu soruyu daha önce cevapladın. Diğer soruya geçebilirsin.";
-    return;
-  }
-
-  if (correct) {
-
-    const awarded = awardKarsPoint("tarihi-mimari", question);
-
-    if (awarded) {
-      markKarsQuestionAnswered("tarihi-mimari", question);
-      answered[question] = true;
-      score += 10;
-
-      result.textContent = "Doğru cevap! 10 puan kazandın. 👏";
-    } else {
-      answered[question] = true;
-      result.textContent = "Bu sorudan daha önce puan kazanmışsın.";
+    if (!localStorage.getItem("karsStudent")) {
+        alert("Önce Öğrenci Girişi yapmalısın!");
+        return;
     }
 
-  } else {
-    result.textContent = "Yanlış cevap. Bir sonraki soruya geçelim.";
-  }
+    const feedback = document.getElementById("feedback-" + question);
+    const scoreDisplay = document.getElementById("score");
+    const result = document.getElementById("result");
 
-  scoreDisplay.textContent = score;
 
-  if (Object.values(answered).every(Boolean)) {
-    result.textContent =
-      "🎉 Yarışma tamamlandı! Bu oturumda kazandığın puan: " + score + "/50";
-  }
+    // Daha önce cevaplanmış mı?
+
+    if (answered[question]) {
+
+        feedback.className = "feedback correct";
+        feedback.textContent = "✅ Bu soruyu daha önce tamamladın.";
+
+        return;
+    }
+
+
+    // DOĞRU CEVAP
+
+    if (correct) {
+
+        const awarded = awardKarsPoint("tarihi-mimari", question);
+
+        // İlerlemeyi kaydet
+        markKarsQuestionAnswered("tarihi-mimari", question);
+
+        answered[question] = true;
+
+        if (awarded) {
+            score += 10;
+        }
+
+        feedback.className = "feedback correct";
+        feedback.textContent = "✅ Doğru cevap! Harika.";
+
+    }
+
+
+    // YANLIŞ CEVAP
+
+    else {
+
+        feedback.className = "feedback incorrect";
+        feedback.textContent = "❌ Yanlış cevap. Tekrar dene!";
+    }
+
+
+    // PUANI GÜNCELLE
+
+    scoreDisplay.textContent = score;
+
+
+    // YARIŞMA TAMAMLANDI MI?
+
+    if (Object.values(answered).every(Boolean)) {
+
+        result.textContent =
+            "🎉 Yarışma tamamlandı! Bu oturumda kazandığın puan: "
+            + score + "/50";
+    }
+
 }
+
 </script>
 
+</body>
+</html>
