@@ -17,7 +17,11 @@ header a{color:white;text-decoration:none}
 .card,.intro,.quiz{background:white;padding:23px;border-radius:14px;margin-bottom:20px;box-shadow:0 4px 14px #0000000c}
 h2,h3{color:#164c65;margin-bottom:10px}
 .emoji{font-size:45px;margin-bottom:8px}
-.quiz button{display:block;width:100%;text-align:left;background:#edf3f5;border:0;padding:12px;margin-top:10px;border-radius:8px;cursor:pointer}
+.quiz button{display:block;width:100%;text-align:left;background:#edf3f5;border:0;padding:12px;margin-top:10px;border-radius:8px;cursor:pointer;font-size:15px}
+.quiz button:disabled{opacity:.65;cursor:not-allowed}
+.feedback{font-weight:bold;margin-top:12px;padding:10px;border-radius:8px;display:none}
+.feedback.correct{display:block;background:#e4f6e9;color:#176b32}
+.feedback.incorrect{display:block;background:#fde8e8;color:#b42323}
 #result{margin-top:15px;font-weight:bold}
 footer{background:#123b55;color:white;text-align:center;padding:25px}
 </style>
@@ -109,6 +113,7 @@ bir dönüm noktasıdır.
 <button onclick="answer(1,true)">A) Mehmet Âkif Ersoy</button>
 <button onclick="answer(1,false)">B) Namık Kemal</button>
 <button onclick="answer(1,false)">C) Ziya Gökalp</button>
+<p class="feedback" id="feedback-1"></p>
 </div>
 
 <div class="card">
@@ -116,6 +121,7 @@ bir dönüm noktasıdır.
 <button onclick="answer(2,false)">A) 29 Ekim 1923</button>
 <button onclick="answer(2,true)">B) 12 Mart 1921</button>
 <button onclick="answer(2,false)">C) 19 Mayıs 1919</button>
+<p class="feedback" id="feedback-2"></p>
 </div>
 
 <div class="card">
@@ -123,6 +129,7 @@ bir dönüm noktasıdır.
 <button onclick="answer(3,false)">A) Ankara</button>
 <button onclick="answer(3,false)">B) İstanbul</button>
 <button onclick="answer(3,true)">C) Samsun</button>
+<p class="feedback" id="feedback-3"></p>
 </div>
 
 <div class="card">
@@ -130,6 +137,7 @@ bir dönüm noktasıdır.
 <button onclick="answer(4,true)">A) 1914-1915</button>
 <button onclick="answer(4,false)">B) 1920-1921</button>
 <button onclick="answer(4,false)">C) 1938-1939</button>
+<p class="feedback" id="feedback-4"></p>
 </div>
 
 <div class="card">
@@ -137,10 +145,11 @@ bir dönüm noktasıdır.
 <button onclick="answer(5,false)">A) 29 Ekim 1923</button>
 <button onclick="answer(5,true)">B) 30 Ekim 1920</button>
 <button onclick="answer(5,false)">C) 12 Mart 1921</button>
+<p class="feedback" id="feedback-5"></p>
 </div>
 
 <div id="result">Yarışmaya hazır mısın?</div>
-<p>🏆 Puanın: <span id="score">0</span> / 50</p>
+<p>🏆 Bu oturumdaki puanın: <span id="score">0</span> / 50</p>
 </section>
 
 </main>
@@ -151,9 +160,43 @@ bir dönüm noktasıdır.
 </footer>
 
 <script src="puan.js"></script>
+
 <script>
 let score = 0;
-let answered = getKarsAnsweredQuestions("milli-degerlerimiz", 5);
+let answered = {1:false,2:false,3:false,4:false,5:false};
+
+function checkPreviousAnswers() {
+  const student = JSON.parse(localStorage.getItem("karsStudent") || "null");
+
+  if (!student) return;
+
+  for (let i = 1; i <= 5; i++) {
+    const key = student.name + "_milli-degerlerimiz_" + i;
+
+    if (localStorage.getItem("karsAnswers")) {
+      const answers = JSON.parse(localStorage.getItem("karsAnswers") || "{}");
+
+      if (answers[key]) {
+        answered[i] = true;
+
+        const feedback = document.getElementById("feedback-" + i);
+        feedback.textContent = "✓ Bu soruyu daha önce doğru cevapladın ve puanını kazandın.";
+        feedback.className = "feedback correct";
+
+        disableQuestion(i);
+      }
+    }
+  }
+}
+
+function disableQuestion(question) {
+  const card = document.getElementById("feedback-" + question).parentElement;
+  const buttons = card.querySelectorAll("button");
+
+  buttons.forEach(button => {
+    button.disabled = true;
+  });
+}
 
 function answer(question, correct) {
   if (answered[question]) return;
@@ -163,32 +206,41 @@ function answer(question, correct) {
     return;
   }
 
-  answered[question] = true;
-  markKarsQuestionAnswered("milli-degerlerimiz", question);
-
+  const feedback = document.getElementById("feedback-" + question);
   const result = document.getElementById("result");
   const scoreDisplay = document.getElementById("score");
 
   if (correct) {
     const awarded = awardKarsPoint("milli-degerlerimiz", question);
 
+    answered[question] = true;
+    markKarsQuestionAnswered("milli-degerlerimiz", question);
+
     if (awarded) {
       score += 10;
-      result.textContent = "Doğru cevap! 10 puan kazandın. 👏";
+      feedback.textContent = "✓ Doğru cevap! 10 puan kazandın. Tebrikler! 👏";
     } else {
-      result.textContent = "Bu sorudan daha önce puan kazanmışsın.";
+      feedback.textContent = "✓ Doğru cevap! Bu sorunun puanını daha önce kazanmışsın.";
     }
+
+    feedback.className = "feedback correct";
+    disableQuestion(question);
+
+    scoreDisplay.textContent = score;
+    result.textContent = "Harika! Doğru cevap verdin. 🎉";
+
+    if (Object.values(answered).every(Boolean)) {
+      result.textContent = "🎉 Millî Değerlerimiz bölümünü tamamladın!";
+    }
+
   } else {
-    result.textContent = "Yanlış cevap. Bir sonraki soruya geçelim.";
-  }
-
-  scoreDisplay.textContent = score;
-
-  if (Object.values(answered).every(Boolean)) {
-    result.textContent =
-      "🎉 Yarışma tamamlandı! Bu oturumda kazandığın puan: " + score + "/50";
+    feedback.textContent = "✗ Yanlış cevap. Tekrar dene!";
+    feedback.className = "feedback incorrect";
+    result.textContent = "Bir kez daha düşün ve tekrar dene.";
   }
 }
+
+checkPreviousAnswers();
 </script>
 
 </body>
