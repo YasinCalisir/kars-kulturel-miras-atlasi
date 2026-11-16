@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ani Antik Kenti | Şehrimizi Tanıyalım</title>
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Arial,sans-serif;background:#f3f6fa;color:#263445;line-height:1.7}
@@ -23,7 +24,7 @@ h2{color:#164c65;margin-bottom:15px}
 button,.btn{display:inline-block;border:0;background:#e8a932;color:#263445;padding:11px 17px;border-radius:8px;font-weight:bold;cursor:pointer;text-decoration:none;margin-top:13px}
 .quiz{margin-top:35px}
 .quiz button{display:block;width:100%;text-align:left;background:#edf3f5;margin-top:10px}
-.quiz button:disabled{cursor:default;opacity:.75}
+.quiz button:disabled{cursor:default;opacity:.65}
 .feedback{font-weight:bold;margin-top:10px;min-height:28px}
 .feedback.correct{color:#16833b}
 .feedback.incorrect{color:#d12f2f}
@@ -32,6 +33,7 @@ button,.btn{display:inline-block;border:0;background:#e8a932;color:#263445;paddi
 footer{background:#123b55;color:white;text-align:center;padding:25px}
 </style>
 </head>
+
 <body>
 
 <header>
@@ -166,15 +168,10 @@ yapılarını ve kültürel önemini inceleyebilirsin.
 </footer>
 
 <script src="puan.js"></script>
+
 <script>
 let score=0;
-let student = JSON.parse(localStorage.getItem("karsStudent") || "null");
-let oldAnswers = JSON.parse(localStorage.getItem("karsAnswers") || "{}");
-
-let answered = {
-  1: !!(student && oldAnswers[student.name + "_ani_1"]),
-  2: !!(student && oldAnswers[student.name + "_ani_2"])
-};
+let answered={1:false,2:false};
 
 function speak(text){
  if(!('speechSynthesis' in window)){
@@ -188,47 +185,77 @@ function speak(text){
  speechSynthesis.speak(msg);
 }
 
-function answer(question,correct,button){
- const feedback=document.getElementById('feedback-'+question);
+// Öğrencinin daha önce doğru cevapladığı soruları kontrol et
+function checkPreviousAnswers(){
+ let student=JSON.parse(localStorage.getItem("karsStudent") || "null");
+ let oldAnswers=JSON.parse(localStorage.getItem("karsAnswers") || "{}");
 
- if(answered[question]){
-  feedback.textContent='Bu soruyu daha önce doğru cevapladın.';
-  feedback.className='feedback correct';
+ if(!student) return;
+
+ for(let i=1;i<=2;i++){
+  let key=student.name+"_ani_"+i;
+
+  if(oldAnswers[key]){
+   answered[i]=true;
+
+   let feedback=document.getElementById("feedback-"+i);
+   feedback.textContent="✓ Bu soruyu daha önce doğru cevapladın.";
+   feedback.className="feedback correct";
+
+   let buttons=feedback.parentElement.querySelectorAll("button");
+   buttons.forEach(btn=>btn.disabled=true);
+  }
+ }
+}
+
+function answer(question,correct,button){
+
+ if(answered[question]) return;
+
+ let student=JSON.parse(localStorage.getItem("karsStudent") || "null");
+
+ if(!student){
+  alert("Önce Öğrenci Girişi yapmalısın!");
   return;
  }
 
+ let feedback=document.getElementById("feedback-"+question);
+
  if(correct){
-  answered[question]=true;
-  score+=10;
-  awardKarsPoint("ani",question);
-  markKarsQuestionAnswered("ani",question);
 
-  feedback.textContent='✓ Doğru cevap! Harika, 10 puan kazandın. 👏';
-  feedback.className='feedback correct';
+  // Puan yalnızca bir kez verilir
+  let awarded=awardKarsPoint("ani",question);
 
-  const buttons=feedback.parentElement.querySelectorAll('button');
+  if(!awarded){
+   feedback.textContent="✓ Bu sorunun puanı daha önce kazanılmış.";
+   feedback.className="feedback correct";
+   answered[question]=true;
+  }else{
+   score+=10;
+   answered[question]=true;
+   markKarsQuestionAnswered("ani",question);
+
+   feedback.textContent="✓ Doğru cevap! Harika, 10 puan kazandın. 👏";
+   feedback.className="feedback correct";
+  }
+
+  let buttons=feedback.parentElement.querySelectorAll("button");
   buttons.forEach(btn=>btn.disabled=true);
+
  }else{
-  feedback.textContent='✗ Yanlış cevap. Tekrar dene!';
-  feedback.className='feedback incorrect';
+
+  feedback.textContent="✗ Yanlış cevap. Tekrar dene!";
+  feedback.className="feedback incorrect";
+
  }
 
- if(Object.values(answered).every(value=>value)){
-  document.getElementById('result').textContent=
-  '🎉 Yarışmayı tamamladın! Bu sayfada kazandığın puan: '+score+'/20';
+ if(answered[1] && answered[2]){
+  document.getElementById("result").textContent=
+  "🎉 Yarışmayı tamamladın! Bu oturumda kazandığın puan: "+score+"/20";
  }
 }
 
-// Daha önce doğru cevaplanmış soruları göster
-for(let i=1;i<=2;i++){
- if(answered[i]){
-  const feedback=document.getElementById('feedback-'+i);
-  feedback.textContent='✓ Bu soruyu daha önce doğru cevapladın.';
-  feedback.className='feedback correct';
-  const buttons=feedback.parentElement.querySelectorAll('button');
-  buttons.forEach(btn=>btn.disabled=true);
- }
-}
+checkPreviousAnswers();
 </script>
 
 </body>
