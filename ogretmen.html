@@ -14,20 +14,17 @@ body {
     padding: 20px;
 }
 .container {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 30px auto;
     background: white;
     padding: 25px;
     border-radius: 15px;
     box-shadow: 0 3px 12px #ccc;
 }
-h1 {
-    text-align: center;
+h1, h2 {
     color: #174873;
 }
-h2 {
-    color: #174873;
-}
+h1 { text-align: center; }
 table {
     width: 100%;
     border-collapse: collapse;
@@ -53,6 +50,17 @@ tr:nth-child(even) {
     color: #777;
     text-align: center;
 }
+.delete-btn {
+    background: #d93025;
+    color: white;
+    border: none;
+    padding: 8px 13px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.delete-btn:hover {
+    background: #a91f18;
+}
 </style>
 </head>
 
@@ -72,6 +80,7 @@ tr:nth-child(even) {
 <th>Sınıf</th>
 <th>Okul</th>
 <th>Puan</th>
+<th>İşlem</th>
 </tr>
 </thead>
 <tbody id="studentList"></tbody>
@@ -82,48 +91,96 @@ tr:nth-child(even) {
 </div>
 
 <script>
-let students = JSON.parse(
-    localStorage.getItem("karsStudents") || "[]"
-);
 
-students.sort((a, b) =>
-    (Number(b.score) || 0) - (Number(a.score) || 0)
-);
+function showStudents() {
 
-let list = document.getElementById("studentList");
+    let students = JSON.parse(
+        localStorage.getItem("karsStudents") || "[]"
+    );
 
-document.getElementById("studentCount").innerText =
-    "Toplam öğrenci sayısı: " + students.length;
+    students.sort((a, b) =>
+        (Number(b.score) || 0) - (Number(a.score) || 0)
+    );
 
-students.slice(0, 10).forEach((student, index) => {
-    let row = document.createElement("tr");
+    let list = document.getElementById("studentList");
+    list.innerHTML = "";
 
-    let values = [
-        index + 1,
-        student.name || "",
-        student.studentClass || "",
-        student.school || "",
-        (Number(student.score) || 0) + " puan"
-    ];
+    document.getElementById("studentCount").innerText =
+        "Toplam öğrenci sayısı: " + students.length;
 
-    values.forEach((value, i) => {
-        let cell = document.createElement("td");
-        cell.textContent = value;
+    students.forEach((student, index) => {
 
-        if (i === 4) {
-            cell.className = "score";
-        }
+        let row = document.createElement("tr");
 
-        row.appendChild(cell);
+        let values = [
+            index + 1,
+            student.name || "",
+            student.studentClass || "",
+            student.school || "",
+            (Number(student.score) || 0) + " puan"
+        ];
+
+        values.forEach((value, i) => {
+
+            let cell = document.createElement("td");
+            cell.textContent = value;
+
+            if (i === 4) {
+                cell.className = "score";
+            }
+
+            row.appendChild(cell);
+        });
+
+        let actionCell = document.createElement("td");
+        let deleteButton = document.createElement("button");
+
+        deleteButton.textContent = "Sil";
+        deleteButton.className = "delete-btn";
+
+        deleteButton.onclick = function() {
+
+            if (!confirm(
+                student.name + " adlı öğrenciyi silmek istiyor musun?"
+            )) {
+                return;
+            }
+
+            let currentStudents = JSON.parse(
+                localStorage.getItem("karsStudents") || "[]"
+            );
+
+            let indexToDelete = currentStudents.findIndex(s =>
+                s.name === student.name &&
+                s.school === student.school &&
+                s.studentClass === student.studentClass
+            );
+
+            if (indexToDelete !== -1) {
+                currentStudents.splice(indexToDelete, 1);
+
+                localStorage.setItem(
+                    "karsStudents",
+                    JSON.stringify(currentStudents)
+                );
+            }
+
+            showStudents();
+        };
+
+        actionCell.appendChild(deleteButton);
+        row.appendChild(actionCell);
+        list.appendChild(row);
     });
 
-    list.appendChild(row);
-});
-
-if (students.length === 0) {
-    list.innerHTML =
-        '<tr><td colspan="5">Henüz öğrenci kaydı bulunamadı.</td></tr>';
+    if (students.length === 0) {
+        list.innerHTML =
+            '<tr><td colspan="6">Henüz öğrenci kaydı bulunamadı.</td></tr>';
+    }
 }
+
+showStudents();
+
 </script>
 
 </body>
