@@ -205,3 +205,61 @@ function getKarsTourProgress() {
         complete: completed === total
     };
 }
+
+// ÖĞRENCİ SİLME SİSTEMİ
+
+function deleteKarsStudent(name, school, studentClass) {
+
+    if (!confirm(name + " adlı öğrenciyi silmek istiyor musun?")) {
+        return false;
+    }
+
+    // Öğrenci sıralamasından sil
+    let students = JSON.parse(
+        localStorage.getItem("karsStudents") || "[]"
+    );
+
+    students = students.filter(s =>
+        !(s.name === name &&
+          s.school === school &&
+          s.studentClass === studentClass)
+    );
+
+    localStorage.setItem("karsStudents", JSON.stringify(students));
+
+    // Öğrencinin gezi ilerlemesini sil
+    let studentKey = JSON.stringify([
+        name,
+        school,
+        studentClass
+    ]);
+
+    let progress = JSON.parse(
+        localStorage.getItem("karsQuizProgress") || "{}"
+    );
+
+    delete progress[studentKey];
+
+    localStorage.setItem(
+        "karsQuizProgress",
+        JSON.stringify(progress)
+    );
+
+    // Silinen öğrenci aktif öğrenciyse oturumu kapat
+    let activeStudent = JSON.parse(
+        localStorage.getItem("karsStudent") || "null"
+    );
+
+    if (
+        activeStudent &&
+        activeStudent.name === name &&
+        activeStudent.school === school &&
+        activeStudent.studentClass === studentClass
+    ) {
+        localStorage.removeItem("karsStudent");
+    }
+
+    alert("Öğrenci başarıyla silindi!");
+
+    return true;
+}
